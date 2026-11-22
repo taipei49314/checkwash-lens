@@ -1,0 +1,588 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-11-22T07:56:38.468Z",
+  "runtime": {
+    "hostname": "WIN11-VERIFY-HOST",
+    "evidenceTag": "PINNED_PRODUCER_FIXTURE",
+    "os": "Windows_NT 10.0.26200 (x64)",
+    "python": {
+      "path": "C:\\Python311\\python.exe",
+      "version": "Python 3.11.9",
+      "sha256": "5f7b89a612c9b8af1d6456cdfcd1dbe5ca630849e79aebced9bee9a6694952ec"
+    },
+    "git": {
+      "path": "C:\\Program Files\\Git\\cmd\\git.exe",
+      "version": "git version 2.55.0.windows.3",
+      "sha256": "7b7971dd13f0c3a284e538601f2f9770b3a87dfaccb5fb52d68141c67ed22364"
+    },
+    "checkwashPyz": {
+      "path": "bundled/checkwash.pyz",
+      "version": "0.13.1",
+      "bytes": 1079499,
+      "sha256": "0a987325c6f738129f5dbdc1e0287cfeab40517342b46df80707cccff8dd2839",
+      "artifactBuildSourceCommit": "5e2a89ef0d447ae6e08c289f4a3357325b7286e9",
+      "actionTagCommit": "62656df812372c085b4d32c7864fcdfaccd0318a"
+    },
+    "checkwashBroker": {
+      "path": "bundled/checkwash-broker.exe",
+      "bytes": 31232,
+      "sha256": "808e11f038eca5a458bf554a2e436306cd1476bf270fc51333c1172877b6c381"
+    },
+    "checkwashProve": {
+      "path": "C:\\tools\\checkwash-prove-venv\\Scripts\\checkwash-prove.exe",
+      "version": "checkwash-prove 0.1.0",
+      "sha256": "bb279693b64c78f272ae181389a0a76791ae6524919d04df0d115e88512e8991",
+      "sourceCommit": "582f1339ea48f4db48b4414648ca21316aeb0713",
+      "catalogueVersion": "v0.5-m2",
+      "generatorSha256": "67096f7340a281585aaeaf801ae0ac29c4eb1a777c358ee973f02058cc7f4e14"
+    }
+  },
+  "syntheticRepositories": {
+    "synthRepo1": {
+      "description": "Controlled harmless synthetic repository with calc.py and test_calc.py",
+      "commits": {
+        "c1Base": "4666f1081223951fe3aed7a835337ef4b72f7ab7",
+        "c2Pass": "da00bacfc4a42a5468742c34914d5cc14617c308",
+        "c3Block": "9eb5d6b0615b1148c0d7cf46e2d564721ff7711e",
+        "c4Docs": "2966128ac93c00dbfb8a2b7e9b659c9ff0a105f2"
+      }
+    },
+    "synthRepoJsEmptyUnit": {
+      "description": "Controlled synthetic JS repository with empty-title it(\"\", ...) test",
+      "commits": {
+        "jsBase": "83a15c49b5e039be34996162d0a6b2f300e44395",
+        "jsHead": "e5bc9319f66dcd1ee2a9040c6ea257442f894671"
+      }
+    },
+    "synthRepoProveClarify": {
+      "description": "Controlled synthetic Python repository producing real needs_clarification + protection_losses + unconfirmed_losses",
+      "commits": {
+        "clBase": "354d669eea615ec7b107a476ce91b64c3e351882",
+        "clHead": "7458d2a860ffc8a3b5443f60121eec45f2d8ebaa"
+      }
+    },
+    "synthRepoProveEarly": {
+      "description": "Controlled synthetic Python repository producing real --list and full early-return pairs",
+      "commits": {
+        "e1Base": "b7d9de5c2cee4f7c07dae51cd65629079b36b36f",
+        "e2NoMutants": "21a2b189915726c84d5f8e3b4fd6f67e99d6d54d",
+        "e3CleanFailBase": "da5e30494661e8dece048fa5b6aad2ae2ff6c915",
+        "e4CleanFailHead": "2b7bcb288142479b18ef4b6b6587db7935ce4978",
+        "e5CollectionFailBase": "752e46ee642189fa20add50b12533ca7f6dee127",
+        "e6CollectionFailHead": "6dce0d6d79d45c1c78de7e620a0d9a75562296f2"
+      }
+    },
+    "synthRepoProveUndecided": {
+      "description": "Controlled synthetic Python repository producing real undecided rows",
+      "commits": {
+        "uBase": "aa2f738687d57b71451134c28b4d8e8412746e28",
+        "uHead": "9f667775083e9371cbcfce7e669057c8af2bf40b"
+      }
+    }
+  },
+  "cases": {
+    "A01": {
+      "description": "固定版本 pass／block 原始輸出：JSON、SARIF、四次真實呼叫 argv／exits／stdout／stderr／runtime 與引擎身分／fixture OID 獨立保存",
+      "origin": "pinned_real_output",
+      "commands": {
+        "passJson": [
+          "C:\\Python311\\python.exe",
+          "-I",
+          "-S",
+          "-B",
+          "C:\\workspace\\checkwash-lens\\bundled\\checkwash.pyz",
+          "--repo",
+          "C:\\Temp\\cw-phase0-synth-f5Gpv9\\synth-repo-1",
+          "--format",
+          "json",
+          "4666f1081223951fe3aed7a835337ef4b72f7ab7..da00bacfc4a42a5468742c34914d5cc14617c308"
+        ],
+        "passSarif": [
+          "C:\\Python311\\python.exe",
+          "-I",
+          "-S",
+          "-B",
+          "C:\\workspace\\checkwash-lens\\bundled\\checkwash.pyz",
+          "--repo",
+          "C:\\Temp\\cw-phase0-synth-f5Gpv9\\synth-repo-1",
+          "--format",
+          "sarif",
+          "4666f1081223951fe3aed7a835337ef4b72f7ab7..da00bacfc4a42a5468742c34914d5cc14617c308"
+        ],
+        "blockJson": [
+          "C:\\Python311\\python.exe",
+          "-I",
+          "-S",
+          "-B",
+          "C:\\workspace\\checkwash-lens\\bundled\\checkwash.pyz",
+          "--repo",
+          "C:\\Temp\\cw-phase0-synth-f5Gpv9\\synth-repo-1",
+          "--format",
+          "json",
+          "da00bacfc4a42a5468742c34914d5cc14617c308..9eb5d6b0615b1148c0d7cf46e2d564721ff7711e"
+        ],
+        "blockSarif": [
+          "C:\\Python311\\python.exe",
+          "-I",
+          "-S",
+          "-B",
+          "C:\\workspace\\checkwash-lens\\bundled\\checkwash.pyz",
+          "--repo",
+          "C:\\Temp\\cw-phase0-synth-f5Gpv9\\synth-repo-1",
+          "--format",
+          "sarif",
+          "da00bacfc4a42a5468742c34914d5cc14617c308..9eb5d6b0615b1148c0d7cf46e2d564721ff7711e"
+        ]
+      },
+      "files": {
+        "invocationReceipts": "a01-invocation-receipts.json",
+        "passFindings": "a01-pass.findings.json",
+        "passSarif": "a01-pass.sarif.json",
+        "blockFindings": "a01-block.findings.json",
+        "blockSarif": "a01-block.sarif.json"
+      },
+      "expectedOutcome": {
+        "passVerdict": "pass",
+        "passState": "Pass",
+        "passFindingsCount": 0,
+        "blockVerdict": "block",
+        "blockState": "Block",
+        "blockFindingsCount": 4,
+        "blockSarifResultsCount": 4
+      },
+      "rationale": "Rev 3 §4.3, §5.1, §6: Real v0.13.1 pass and block outputs read observed exits, stdout, stderr, runtime/engine identity, and full commit OIDs directly from a01-invocation-receipts.json."
+    },
+    "A02": {
+      "description": "缺鍵、錯型別、不支援版本拒絕；合法空字串 unit 與未知 optional key／rule／label 可保留",
+      "origin": "labeled_variant_from_pinned",
+      "files": {
+        "emptyUnitJsFindings": "a02-empty-unit-js.findings.json",
+        "emptyUnitJsSarif": "a02-empty-unit-js.sarif.json",
+        "emptyUnitJsReceipt": "a02-empty-unit-js-receipt.json",
+        "unknownOptional": "a02-unknown-optional.findings.json",
+        "missingVerdict": "a02-missing-verdict.findings.json",
+        "unsupportedVersion": "a02-unsupported-version.findings.json"
+      },
+      "expectedOutcome": {
+        "emptyUnitValid": true,
+        "unknownOptionalValid": true,
+        "unknownRuleIdPreserved": "CW999_FUTURE_RULE",
+        "missingVerdictValid": false,
+        "unsupportedVersionValid": false
+      },
+      "rationale": "Rev 3 §5.1: Must accept empty string unit (\"\") as emitted by Checkwash v0.13.1 on empty-title JS tests, validate required findings v2 keys/types and version=2, and tolerate unknown optional keys/rules/labels."
+    },
+    "A03": {
+      "description": "多項、缺項、錯序、錯 fingerprint 拒絕整組關聯；保留重複 identity 的每一次出現，不截短、不靜默去重",
+      "origin": "labeled_variant_from_pinned",
+      "files": {
+        "extraSarifResult": "a03-extra-sarif-result.sarif.json",
+        "wrongFingerprint": "a03-wrong-fingerprint.sarif.json",
+        "dupFindings": "a03-dup.findings.json",
+        "dupSarif": "a03-dup.sarif.json"
+      },
+      "expectedOutcome": {
+        "extraSarifRejected": true,
+        "wrongFingerprintRejected": true,
+        "duplicateCountPreserved": 2
+      },
+      "rationale": "Rev 3 §5.2: Non-allowlisted JSON findings and SARIF results must match 1-to-1 in order and preserve duplicate identities without truncation or single-key map deduplication."
+    },
+    "A04": {
+      "description": "Allowlisted、helper、conftest：保留 allowlisted；跨檔來源正確，不要求兩種 path 相同",
+      "origin": "labeled_variant_from_pinned",
+      "files": {
+        "findings": "a04-allowlisted-conftest.findings.json",
+        "sarif": "a04-allowlisted-conftest.sarif.json"
+      },
+      "expectedOutcome": {
+        "allowlistedPreservedCount": 1,
+        "allowlistedLine": null,
+        "crossFileJsonPath": "tests/test_calc.py",
+        "crossFileSarifPath": "tests/conftest.py",
+        "crossFileLine1Based": 14,
+        "crossFileLine0Based": 13
+      },
+      "rationale": "Rev 3 §5.2 & §5.3: Allowlisted findings remain in the joined report with line:null; non-allowlisted findings use SARIF artifactLocation.uri even when it points to an imported helper/conftest file."
+    },
+    "A05": {
+      "description": "Base-only、無 region、歧義來源：line:null；不猜位置、不製造第 1 行診斷",
+      "origin": "labeled_variant_from_pinned",
+      "files": {
+        "findings": "a05-noregion.findings.json",
+        "sarif": "a05-noregion.sarif.json"
+      },
+      "expectedOutcome": {
+        "firstFindingLine": null,
+        "firstFindingEvidenceSide": "base",
+        "secondFindingLine": null,
+        "secondFindingEvidenceSide": "unknown"
+      },
+      "rationale": "Rev 3 §5.3: Missing SARIF region must stay line:null (never fake line 1) and record actual checkwash.evidenceSide or unknown."
+    },
+    "A06": {
+      "description": "中文、空白、百分號、URI 與換行：解碼一次、路徑有效、行號轉換正確；惡意／不支援路徑拒絕",
+      "origin": "labeled_variant_from_pinned",
+      "expectedOutcome": {
+        "encodedChineseAndPercentDecodedOnce": "tests/中文 測試/test_%25_literal.py",
+        "line1BasedTo0Based": 0,
+        "schemesRejected": true,
+        "traversalRejected": true,
+        "adsRejected": true,
+        "nulRejected": true
+      },
+      "rationale": "Rev 3 §5.3 & §5.5: Single percent-decoding preserves literal %25 as %, supports Chinese and spaces, converts 1-based line to 0-based, and rejects schemes, .., NUL, and Windows ADS."
+    },
+    "A07": {
+      "description": "Pass／Block 各與所有缺口組合：Partial 或 Block＋缺口；缺口不隱藏",
+      "origin": "labeled_variant_from_pinned",
+      "files": {
+        "passWithGapsFindings": "a07-pass-gaps.findings.json",
+        "passWithGapsSarif": "a07-pass-gaps.sarif.json"
+      },
+      "expectedOutcome": {
+        "passWithGapsState": "Partial / Review",
+        "blockWithGapsState": "Block",
+        "minGapCount": 4
+      },
+      "rationale": "Rev 3 §6: Pass with any gap (unread, skipped_files, config_errors, SARIF notification, non-empty stderr) becomes Partial / Review; Block with gaps remains Block and preserves all gaps."
+    },
+    "A08": {
+      "description": "Unread-only exit 2、signal、null、矛盾 exits：一律不是 Pass",
+      "origin": "labeled_variant_from_pinned",
+      "expectedOutcome": {
+        "exit2State": "Error",
+        "signalState": "Error",
+        "nullExitState": "Error",
+        "contradictoryExit0BlockState": "Error",
+        "contradictoryExit1PassState": "Error"
+      },
+      "rationale": "Rev 3 §6: Only 0+pass and 1+block are valid completion combinations; exit 2, signals, null exits, or contradictory exits must yield Error and never Pass."
+    },
+    "A09": {
+      "description": "歷史來源、dirty buffer、文件 version 改變：不錯掛 live 診斷；修改後立即失效",
+      "origin": "labeled_variant_from_pinned",
+      "expectedOutcome": {
+        "bomAndCrlfNormalizedMatch": true,
+        "dirtyBufferAllowed": false,
+        "versionChangedAllowed": false,
+        "invalidUtf8Allowed": false
+      },
+      "rationale": "Rev 3 §5.4: Live diagnostics require valid UTF-8, full-file match after UTF-8 BOM removal and CRLF/CR->LF normalization, and unchanged document.version."
+    },
+    "A10": {
+      "description": "分支移動、引擎改變、舊 run 晚到：不改本次來源、不覆蓋新狀態",
+      "origin": "labeled_variant_from_pinned",
+      "expectedOutcome": {
+        "pinnedOidImmutableOnBranchMove": true,
+        "engineHashMismatchRejected": true,
+        "staleScanIdDropped": true
+      },
+      "rationale": "Rev 3 §4.2, §4.3, §7.4: Scan binds immutable full commit OIDs, verifies identical execution identity across JSON and SARIF, and drops late arrivals from older scanIds."
+    },
+    "A11": {
+      "description": "Prove 零損失、真實 clarification 並存群組與混合報告：分類完整、不遺漏群組、不顯示安全",
+      "origin": "pinned_real_output",
+      "commands": {
+        "zeroLoss": [
+          "C:\\tools\\checkwash-prove-venv\\Scripts\\checkwash-prove.exe",
+          "--repo",
+          "C:\\Temp\\cw-phase0-synth-f5Gpv9\\synth-repo-1",
+          "--python",
+          "C:\\Python311\\python.exe",
+          "--format",
+          "json",
+          "--workers",
+          "1",
+          "--max-mutants",
+          "10",
+          "--timeout",
+          "30",
+          "--suite-timeout",
+          "120",
+          "4666f1081223951fe3aed7a835337ef4b72f7ab7..da00bacfc4a42a5468742c34914d5cc14617c308"
+        ],
+        "withLoss": [
+          "C:\\tools\\checkwash-prove-venv\\Scripts\\checkwash-prove.exe",
+          "--repo",
+          "C:\\Temp\\cw-phase0-synth-f5Gpv9\\synth-repo-1",
+          "--python",
+          "C:\\Python311\\python.exe",
+          "--format",
+          "json",
+          "--workers",
+          "1",
+          "--max-mutants",
+          "10",
+          "--timeout",
+          "30",
+          "--suite-timeout",
+          "120",
+          "da00bacfc4a42a5468742c34914d5cc14617c308..9eb5d6b0615b1148c0d7cf46e2d564721ff7711e"
+        ],
+        "realClarificationCoexisting": [
+          "C:\\tools\\checkwash-prove-venv\\Scripts\\checkwash-prove.exe",
+          "--repo",
+          "C:\\Temp\\cw-phase0-synth-f5Gpv9\\synth-repo-prove-clarify",
+          "--python",
+          "C:\\Python311\\python.exe",
+          "--format",
+          "json",
+          "--workers",
+          "1",
+          "--max-mutants",
+          "25",
+          "--timeout",
+          "30",
+          "--suite-timeout",
+          "120",
+          "354d669eea615ec7b107a476ce91b64c3e351882..7458d2a860ffc8a3b5443f60121eec45f2d8ebaa"
+        ],
+        "realUndecided": [
+          "C:\\tools\\checkwash-prove-venv\\Scripts\\checkwash-prove.exe",
+          "--repo",
+          "C:\\Temp\\cw-phase0-synth-f5Gpv9\\synth-repo-prove-undecided",
+          "--python",
+          "C:\\Python311\\python.exe",
+          "--format",
+          "json",
+          "--workers",
+          "1",
+          "--max-mutants",
+          "10",
+          "aa2f738687d57b71451134c28b4d8e8412746e28..9f667775083e9371cbcfce7e669057c8af2bf40b"
+        ]
+      },
+      "files": {
+        "zeroLoss": "a11-prove-zero-loss.json",
+        "protectionLoss": "a11-prove-protection-loss.json",
+        "realClarificationCoexisting": "prove-real-clarification-coexisting.json",
+        "realUndecided": "prove-real-undecided.json",
+        "mixedCoexisting": "a11-prove-mixed-coexisting.json"
+      },
+      "expectedOutcome": {
+        "zeroLossStatus": "Compared",
+        "zeroLossConfirmedCount": 0,
+        "zeroLossNoConfirmedMessage": "本次有限範圍內未觀察到已確認的保護損失；不代表變更安全或沒有損失。",
+        "protectionLossStatus": "Compared",
+        "protectionLossMinCount": 1,
+        "mixedHasAllFourGroups": true
+      },
+      "rationale": "Rev 3 §9.4: Prove preserves protection_losses, unconfirmed_losses, needs_clarification (test/reason/also_fails_in_new/detail), and mutation.undecided simultaneously and never displays a green Pass or safety claim."
+    },
+    "A12": {
+      "description": "Prove list／nothing／no mutants／cap=0／clean-fail／collection-fail：list 提前返回不誤判為 Listed，與 full 模式狀態一致",
+      "origin": "pinned_real_output",
+      "commands": {
+        "list": [
+          "C:\\tools\\checkwash-prove-venv\\Scripts\\checkwash-prove.exe",
+          "--repo",
+          "C:\\Temp\\cw-phase0-synth-f5Gpv9\\synth-repo-1",
+          "--python",
+          "C:\\Python311\\python.exe",
+          "--format",
+          "json",
+          "--list",
+          "--workers",
+          "1",
+          "--max-mutants",
+          "5",
+          "--timeout",
+          "30",
+          "--suite-timeout",
+          "120",
+          "da00bacfc4a42a5468742c34914d5cc14617c308..9eb5d6b0615b1148c0d7cf46e2d564721ff7711e"
+        ],
+        "nothing": [
+          "C:\\tools\\checkwash-prove-venv\\Scripts\\checkwash-prove.exe",
+          "--repo",
+          "C:\\Temp\\cw-phase0-synth-f5Gpv9\\synth-repo-1",
+          "--python",
+          "C:\\Python311\\python.exe",
+          "--format",
+          "json",
+          "--workers",
+          "1",
+          "--max-mutants",
+          "10",
+          "--timeout",
+          "30",
+          "--suite-timeout",
+          "120",
+          "9eb5d6b0615b1148c0d7cf46e2d564721ff7711e..2966128ac93c00dbfb8a2b7e9b659c9ff0a105f2"
+        ],
+        "listNothing": [
+          "C:\\tools\\checkwash-prove-venv\\Scripts\\checkwash-prove.exe",
+          "--repo",
+          "C:\\Temp\\cw-phase0-synth-f5Gpv9\\synth-repo-1",
+          "--python",
+          "C:\\Python311\\python.exe",
+          "--format",
+          "json",
+          "--list",
+          "--workers",
+          "1",
+          "--max-mutants",
+          "10",
+          "--timeout",
+          "30",
+          "--suite-timeout",
+          "120",
+          "9eb5d6b0615b1148c0d7cf46e2d564721ff7711e..2966128ac93c00dbfb8a2b7e9b659c9ff0a105f2"
+        ],
+        "capZero": [
+          "C:\\tools\\checkwash-prove-venv\\Scripts\\checkwash-prove.exe",
+          "--repo",
+          "C:\\Temp\\cw-phase0-synth-f5Gpv9\\synth-repo-1",
+          "--python",
+          "C:\\Python311\\python.exe",
+          "--format",
+          "json",
+          "--workers",
+          "1",
+          "--max-mutants",
+          "0",
+          "--timeout",
+          "30",
+          "--suite-timeout",
+          "120",
+          "da00bacfc4a42a5468742c34914d5cc14617c308..9eb5d6b0615b1148c0d7cf46e2d564721ff7711e"
+        ],
+        "listNoMutants": [
+          "C:\\tools\\checkwash-prove-venv\\Scripts\\checkwash-prove.exe",
+          "--repo",
+          "C:\\Temp\\cw-phase0-synth-f5Gpv9\\synth-repo-prove-early",
+          "--python",
+          "C:\\Python311\\python.exe",
+          "--format",
+          "json",
+          "--list",
+          "--workers",
+          "1",
+          "--max-mutants",
+          "10",
+          "b7d9de5c2cee4f7c07dae51cd65629079b36b36f..21a2b189915726c84d5f8e3b4fd6f67e99d6d54d"
+        ],
+        "fullNoMutants": [
+          "C:\\tools\\checkwash-prove-venv\\Scripts\\checkwash-prove.exe",
+          "--repo",
+          "C:\\Temp\\cw-phase0-synth-f5Gpv9\\synth-repo-prove-early",
+          "--python",
+          "C:\\Python311\\python.exe",
+          "--format",
+          "json",
+          "--workers",
+          "1",
+          "--max-mutants",
+          "10",
+          "b7d9de5c2cee4f7c07dae51cd65629079b36b36f..21a2b189915726c84d5f8e3b4fd6f67e99d6d54d"
+        ],
+        "listCleanFail": [
+          "C:\\tools\\checkwash-prove-venv\\Scripts\\checkwash-prove.exe",
+          "--repo",
+          "C:\\Temp\\cw-phase0-synth-f5Gpv9\\synth-repo-prove-early",
+          "--python",
+          "C:\\Python311\\python.exe",
+          "--format",
+          "json",
+          "--list",
+          "--workers",
+          "1",
+          "--max-mutants",
+          "10",
+          "da5e30494661e8dece048fa5b6aad2ae2ff6c915..2b7bcb288142479b18ef4b6b6587db7935ce4978"
+        ],
+        "fullCleanFail": [
+          "C:\\tools\\checkwash-prove-venv\\Scripts\\checkwash-prove.exe",
+          "--repo",
+          "C:\\Temp\\cw-phase0-synth-f5Gpv9\\synth-repo-prove-early",
+          "--python",
+          "C:\\Python311\\python.exe",
+          "--format",
+          "json",
+          "--workers",
+          "1",
+          "--max-mutants",
+          "10",
+          "da5e30494661e8dece048fa5b6aad2ae2ff6c915..2b7bcb288142479b18ef4b6b6587db7935ce4978"
+        ],
+        "listCollectionFail": [
+          "C:\\tools\\checkwash-prove-venv\\Scripts\\checkwash-prove.exe",
+          "--repo",
+          "C:\\Temp\\cw-phase0-synth-f5Gpv9\\synth-repo-prove-early",
+          "--python",
+          "C:\\Python311\\python.exe",
+          "--format",
+          "json",
+          "--list",
+          "--workers",
+          "1",
+          "--max-mutants",
+          "10",
+          "752e46ee642189fa20add50b12533ca7f6dee127..6dce0d6d79d45c1c78de7e620a0d9a75562296f2"
+        ],
+        "fullCollectionFail": [
+          "C:\\tools\\checkwash-prove-venv\\Scripts\\checkwash-prove.exe",
+          "--repo",
+          "C:\\Temp\\cw-phase0-synth-f5Gpv9\\synth-repo-prove-early",
+          "--python",
+          "C:\\Python311\\python.exe",
+          "--format",
+          "json",
+          "--workers",
+          "1",
+          "--max-mutants",
+          "10",
+          "752e46ee642189fa20add50b12533ca7f6dee127..6dce0d6d79d45c1c78de7e620a0d9a75562296f2"
+        ]
+      },
+      "files": {
+        "list": "a12-prove-list.json",
+        "nothing": "a12-prove-nothing.json",
+        "listNothing": "prove-real-list-nothing.json",
+        "capZero": "a12-prove-cap-zero.json",
+        "listNoMutants": "prove-real-list-no-mutants.json",
+        "fullNoMutants": "prove-real-full-no-mutants.json",
+        "listCleanFail": "prove-real-list-clean-fail.json",
+        "fullCleanFail": "prove-real-full-clean-fail.json",
+        "listCollectionFail": "prove-real-list-collection-fail.json",
+        "fullCollectionFail": "prove-real-full-collection-fail.json"
+      },
+      "expectedOutcome": {
+        "listStatus": "Listed",
+        "listExecutesMutants": false,
+        "nothingStatus": "Nothing to compare",
+        "capZeroStatus": "Not compared",
+        "capZeroReason": "cap_zero",
+        "noMutantsStatus": "Not compared",
+        "noMutantsReason": "no_mutants",
+        "collectionFailStatus": "Not compared",
+        "collectionFailReason": "collection_clean_or_trace"
+      },
+      "rationale": "Rev 3 §9.4: Classifies actual completion outcome so --list early returns show Nothing to compare or Not compared (matching full mode), never Listed."
+    },
+    "A13": {
+      "description": "Replay 特殊字元、HEAD 移動、選項替換：argv 邊界正確；固定來源；報告不能指定可執行程式",
+      "origin": "labeled_variant_from_pinned",
+      "expectedOutcome": {
+        "workersForcedTo1": true,
+        "maxMutantsForcedTo1": true,
+        "listOnlyForcedFalse": true,
+        "keepForcedFalse": true,
+        "usesTrustedExecutableNotReport": true,
+        "usesPinnedOidsNotMovingHead": true
+      },
+      "rationale": "Rev 3 §9.5: Replay rebuilds argv from extension-owned TrustedProveExecutionRecord with pinned OIDs and single-mutant overrides, never executing loss.replay."
+    },
+    "A14": {
+      "description": "匯入報告及不相容 Prove：唯讀；不取得執行能力、不污染目前 verdict",
+      "origin": "labeled_variant_from_pinned",
+      "expectedOutcome": {
+        "importedReportReplayBlocked": true,
+        "unsupportedProveVersionRejected": true,
+        "unsupportedCatalogueHashRejected": true
+      },
+      "rationale": "Rev 3 §7.1, §9.1, §9.5: Imported reports are strictly read-only without Replay capability and never alter live workspace verdict; unpinned Prove versions/hashes are rejected."
+    }
+  }
+}

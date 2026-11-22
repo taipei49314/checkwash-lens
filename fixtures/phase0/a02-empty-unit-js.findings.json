@@ -1,0 +1,75 @@
+{
+  "checkwash_findings_version": 2,
+  "config_errors": [],
+  "findings": [
+    {
+      "after": null,
+      "allowlisted": false,
+      "before": {
+        "span": [
+          133,
+          161
+        ],
+        "text": "expect(doubleVal(0)).toBe(0)"
+      },
+      "deescalators": [],
+      "escalators": [
+        "NO_PROD_CHANGE_IN_DIFF"
+      ],
+      "fingerprint": "ASSERT_REMOVED/tests/math.test.js/-/v2:623933d34430365b2e0d14fab9e5737301407a3d57ab667016466810a1ce99cb",
+      "message": ": assertion removed (strength EXACT_VALUE)",
+      "path": "tests/math.test.js",
+      "rule": "ASSERT_REMOVED",
+      "severity": "high",
+      "shape": null,
+      "strength_after": null,
+      "strength_drop": null,
+      "subject_changed": null,
+      "unit": ""
+    },
+    {
+      "after": {
+        "span": [
+          116,
+          139
+        ],
+        "text": "expect(true).toBe(true)"
+      },
+      "allowlisted": false,
+      "before": {
+        "span": [
+          97,
+          127
+        ],
+        "text": "expect(doubleVal(21)).toBe(42)"
+      },
+      "deescalators": [],
+      "escalators": [
+        "NO_PROD_CHANGE_IN_DIFF"
+      ],
+      "fingerprint": "ASSERT_WEAKENED/tests/math.test.js/-/v2:7644afcc5642ab84d3d8d97080ac5727a412b23dfa48dd2b79beee664bece7ec",
+      "message": ": assertion strength EXACT_VALUE(90) -> TAUTOLOGY(10)",
+      "path": "tests/math.test.js",
+      "rule": "ASSERT_WEAKENED",
+      "severity": "high",
+      "shape": null,
+      "strength_after": 10,
+      "strength_drop": 80,
+      "subject_changed": true,
+      "unit": ""
+    }
+  ],
+  "run": {
+    "base": "83a15c4",
+    "checkwash_version": "0.13.1",
+    "head": "e5bc931"
+  },
+  "skipped_files": [],
+  "summary": {
+    "critical": 0,
+    "high": 2,
+    "info": 0,
+    "warn": 0
+  },
+  "verdict": "block"
+}

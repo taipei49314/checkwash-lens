@@ -1,0 +1,69 @@
+{
+  "checkwash_findings_version": 2,
+  "config_errors": [],
+  "findings": [
+    {
+      "after": null,
+      "allowlisted": false,
+      "before": {
+        "span": [
+          128,
+          166
+        ],
+        "text": "assert compute_discount(200, 0) == 200"
+      },
+      "deescalators": [],
+      "escalators": [
+        "NO_PROD_CHANGE_IN_DIFF"
+      ],
+      "fingerprint": "ASSERT_REMOVED/tests/test_calc.py/test_discount_normal/v2:b966dfc7f1c78163d66088a49454b14a159396ae53fad8c36e3d3e63b7a8ccb2",
+      "message": "test_discount_normal: assertion removed (strength EXACT_VALUE)",
+      "path": "tests/test_calc.py",
+      "rule": "ASSERT_REMOVED",
+      "severity": "high",
+      "shape": null,
+      "strength_after": null,
+      "strength_drop": null,
+      "subject_changed": null,
+      "unit": "test_discount_normal"
+    },
+    {
+      "after": null,
+      "allowlisted": false,
+      "before": {
+        "span": [
+          128,
+          166
+        ],
+        "text": "assert compute_discount(200, 0) == 200"
+      },
+      "deescalators": [],
+      "escalators": [
+        "NO_PROD_CHANGE_IN_DIFF"
+      ],
+      "fingerprint": "ASSERT_REMOVED/tests/test_calc.py/test_discount_normal/v2:b966dfc7f1c78163d66088a49454b14a159396ae53fad8c36e3d3e63b7a8ccb2",
+      "message": "test_discount_normal: assertion removed (strength EXACT_VALUE)",
+      "path": "tests/test_calc.py",
+      "rule": "ASSERT_REMOVED",
+      "severity": "high",
+      "shape": null,
+      "strength_after": null,
+      "strength_drop": null,
+      "subject_changed": null,
+      "unit": "test_discount_normal"
+    }
+  ],
+  "run": {
+    "base": "da00bac",
+    "checkwash_version": "0.13.1",
+    "head": "9eb5d6b"
+  },
+  "skipped_files": [],
+  "summary": {
+    "critical": 0,
+    "high": 4,
+    "info": 0,
+    "warn": 0
+  },
+  "verdict": "block"
+}

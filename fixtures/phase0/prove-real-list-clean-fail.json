@@ -1,0 +1,59 @@
+{
+  "tool": "checkwash-prove",
+  "experimental": true,
+  "catalogue": {
+    "version": "v0.5-m2",
+    "generator_sha256": "67096f7340a281585aaeaf801ae0ac29c4eb1a777c358ee973f02058cc7f4e14"
+  },
+  "range": "da5e30494661e8dece048fa5b6aad2ae2ff6c915..2b7bcb288142479b18ef4b6b6587db7935ce4978",
+  "base": "da5e30494661e8dece048fa5b6aad2ae2ff6c915",
+  "head": "2b7bcb288142479b18ef4b6b6587db7935ce4978",
+  "from_merge_base": false,
+  "python": "C:\\Python311\\python.exe",
+  "host_python": "3.11.9",
+  "options": {
+    "workers": 1,
+    "timeout": 30,
+    "suite_timeout": 900,
+    "max_mutants": 10,
+    "import_root": null,
+    "strict_warnings": false,
+    "only": null,
+    "keep": false,
+    "list_only": true
+  },
+  "needs_clarification": [
+    {
+      "test": "tests/test_mod.py::test_greet",
+      "reason": "this old test fails on the new code: the behaviour changed",
+      "also_fails_in_new": false,
+      "detail": "AssertionError: assert 'changed a' == 'hello a'"
+    }
+  ],
+  "protection_losses": [],
+  "unconfirmed_losses": [],
+  "notes": [
+    "old tests ran with -W ignore::DeprecationWarning (a deprecated name still works); use --strict-warnings to keep the project's warning settings"
+  ],
+  "mutation": {},
+  "compared": false,
+  "nothing_to_compare": false,
+  "pytest_version": "9.1",
+  "tests": {
+    "old": [
+      "tests/test_mod.py"
+    ],
+    "new": [
+      "tests/test_mod.py"
+    ]
+  },
+  "test_suite_files_changed": [
+    "tests/test_mod.py"
+  ],
+  "product_files_changed": [
+    "src/mod.py"
+  ],
+  "workdir": null,
+  "import_root": "src",
+  "status": "no old test passes on the new code; nothing to mutate"
+}

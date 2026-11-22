@@ -1,0 +1,624 @@
+{
+  "tool": "checkwash-prove",
+  "experimental": true,
+  "catalogue": {
+    "version": "v0.5-m2",
+    "generator_sha256": "67096f7340a281585aaeaf801ae0ac29c4eb1a777c358ee973f02058cc7f4e14"
+  },
+  "range": "354d669eea615ec7b107a476ce91b64c3e351882..7458d2a860ffc8a3b5443f60121eec45f2d8ebaa",
+  "base": "354d669eea615ec7b107a476ce91b64c3e351882",
+  "head": "7458d2a860ffc8a3b5443f60121eec45f2d8ebaa",
+  "from_merge_base": false,
+  "python": "C:\\Python311\\python.exe",
+  "host_python": "3.11.9",
+  "options": {
+    "workers": 1,
+    "timeout": 30,
+    "suite_timeout": 120,
+    "max_mutants": 25,
+    "import_root": null,
+    "strict_warnings": false,
+    "only": null,
+    "keep": false,
+    "list_only": false
+  },
+  "needs_clarification": [
+    {
+      "test": "tests/test_billing.py::test_legacy_promo_behavior",
+      "reason": "this old test fails on the new code: the behaviour changed",
+      "also_fails_in_new": false,
+      "detail": "assert 15 == 999"
+    }
+  ],
+  "protection_losses": [
+    {
+      "id": "src/billing.py:3:8:SDL:1",
+      "op": "SDL",
+      "path": "src/billing.py",
+      "line": 3,
+      "before": "raise ValueError(\"negative subtotal\")",
+      "after": "pass",
+      "what": "delete Raise",
+      "old_caught_by": [
+        "tests/test_billing.py::test_negative_subtotal_raises"
+      ],
+      "replay": "checkwash-prove 354d669eea615ec7b107a476ce91b64c3e351882..7458d2a860ffc8a3b5443f60121eec45f2d8ebaa --repo C:\\Temp\\cw-phase0-synth-f5Gpv9\\synth-repo-prove-clarify --python C:\\Python311\\python.exe --suite-timeout 120 --only src/billing.py:3:8:SDL:1"
+    },
+    {
+      "id": "src/billing.py:2:7:ROR:4",
+      "op": "ROR",
+      "path": "src/billing.py",
+      "line": 2,
+      "before": "<",
+      "after": "==",
+      "what": "< -> ==",
+      "old_caught_by": [
+        "tests/test_billing.py::test_negative_subtotal_raises"
+      ],
+      "replay": "checkwash-prove 354d669eea615ec7b107a476ce91b64c3e351882..7458d2a860ffc8a3b5443f60121eec45f2d8ebaa --repo C:\\Temp\\cw-phase0-synth-f5Gpv9\\synth-repo-prove-clarify --python C:\\Python311\\python.exe --suite-timeout 120 --only src/billing.py:2:7:ROR:4"
+    },
+    {
+      "id": "src/billing.py:2:7:ROR:7",
+      "op": "ROR",
+      "path": "src/billing.py",
+      "line": 2,
+      "before": "subtotal < 0",
+      "after": "False",
+      "what": "predicate -> False",
+      "old_caught_by": [
+        "tests/test_billing.py::test_negative_subtotal_raises"
+      ],
+      "replay": "checkwash-prove 354d669eea615ec7b107a476ce91b64c3e351882..7458d2a860ffc8a3b5443f60121eec45f2d8ebaa --repo C:\\Temp\\cw-phase0-synth-f5Gpv9\\synth-repo-prove-clarify --python C:\\Python311\\python.exe --suite-timeout 120 --only src/billing.py:2:7:ROR:7"
+    },
+    {
+      "id": "src/billing.py:2:4:SDL:1",
+      "op": "SDL",
+      "path": "src/billing.py",
+      "line": 2,
+      "before": "if subtotal < 0:\n        raise ValueError(\"negative subtotal\")",
+      "after": "pass",
+      "what": "delete If (whole block)",
+      "old_caught_by": [
+        "tests/test_billing.py::test_negative_subtotal_raises"
+      ],
+      "replay": "checkwash-prove 354d669eea615ec7b107a476ce91b64c3e351882..7458d2a860ffc8a3b5443f60121eec45f2d8ebaa --repo C:\\Temp\\cw-phase0-synth-f5Gpv9\\synth-repo-prove-clarify --python C:\\Python311\\python.exe --suite-timeout 120 --only src/billing.py:2:4:SDL:1"
+    },
+    {
+      "id": "src/billing.py:2:7:VDL:1",
+      "op": "VDL",
+      "path": "src/billing.py",
+      "line": 2,
+      "before": "subtotal < 0",
+      "after": "(0)",
+      "what": "delete variable 'subtotal'",
+      "old_caught_by": [
+        "tests/test_billing.py::test_negative_subtotal_raises"
+      ],
+      "replay": "checkwash-prove 354d669eea615ec7b107a476ce91b64c3e351882..7458d2a860ffc8a3b5443f60121eec45f2d8ebaa --repo C:\\Temp\\cw-phase0-synth-f5Gpv9\\synth-repo-prove-clarify --python C:\\Python311\\python.exe --suite-timeout 120 --only src/billing.py:2:7:VDL:1"
+    }
+  ],
+  "unconfirmed_losses": [
+    {
+      "id": "src/billing.py:5:8:SDL:1",
+      "op": "SDL",
+      "path": "src/billing.py",
+      "line": 5,
+      "before": "raise ValueError(\"negative tax\")",
+      "after": "pass",
+      "what": "delete Raise",
+      "old_caught_by": [
+        "tests/test_billing.py::test_flaky_negative_tax"
+      ],
+      "replay": "checkwash-prove 354d669eea615ec7b107a476ce91b64c3e351882..7458d2a860ffc8a3b5443f60121eec45f2d8ebaa --repo C:\\Temp\\cw-phase0-synth-f5Gpv9\\synth-repo-prove-clarify --python C:\\Python311\\python.exe --suite-timeout 120 --only src/billing.py:5:8:SDL:1",
+      "why": "the old tests did not catch it again"
+    },
+    {
+      "id": "src/billing.py:4:7:AOIU:1",
+      "op": "AOIU",
+      "path": "src/billing.py",
+      "line": 4,
+      "before": "tax",
+      "after": "(-tax)",
+      "what": "insert -",
+      "old_caught_by": [
+        "tests/test_billing.py::test_flaky_negative_tax"
+      ],
+      "replay": "checkwash-prove 354d669eea615ec7b107a476ce91b64c3e351882..7458d2a860ffc8a3b5443f60121eec45f2d8ebaa --repo C:\\Temp\\cw-phase0-synth-f5Gpv9\\synth-repo-prove-clarify --python C:\\Python311\\python.exe --suite-timeout 120 --only src/billing.py:4:7:AOIU:1",
+      "why": "the old tests did not catch it again"
+    },
+    {
+      "id": "src/billing.py:4:7:ROR:4",
+      "op": "ROR",
+      "path": "src/billing.py",
+      "line": 4,
+      "before": "<",
+      "after": "==",
+      "what": "< -> ==",
+      "old_caught_by": [
+        "tests/test_billing.py::test_flaky_negative_tax"
+      ],
+      "replay": "checkwash-prove 354d669eea615ec7b107a476ce91b64c3e351882..7458d2a860ffc8a3b5443f60121eec45f2d8ebaa --repo C:\\Temp\\cw-phase0-synth-f5Gpv9\\synth-repo-prove-clarify --python C:\\Python311\\python.exe --suite-timeout 120 --only src/billing.py:4:7:ROR:4",
+      "why": "the old tests did not catch it again"
+    },
+    {
+      "id": "src/billing.py:4:7:ROR:7",
+      "op": "ROR",
+      "path": "src/billing.py",
+      "line": 4,
+      "before": "tax < -100",
+      "after": "False",
+      "what": "predicate -> False",
+      "old_caught_by": [
+        "tests/test_billing.py::test_flaky_negative_tax"
+      ],
+      "replay": "checkwash-prove 354d669eea615ec7b107a476ce91b64c3e351882..7458d2a860ffc8a3b5443f60121eec45f2d8ebaa --repo C:\\Temp\\cw-phase0-synth-f5Gpv9\\synth-repo-prove-clarify --python C:\\Python311\\python.exe --suite-timeout 120 --only src/billing.py:4:7:ROR:7",
+      "why": "the old tests did not catch it again"
+    }
+  ],
+  "notes": [
+    "old tests ran with -W ignore::DeprecationWarning (a deprecated name still works); use --strict-warnings to keep the project's warning settings",
+    "4 loss(es) did not repeat when run again one at a time, so they are not reported as losses (a flaky test, or tests that interfere when run side by side); each has its replay command"
+  ],
+  "mutation": {
+    "generated": 42,
+    "run": 25,
+    "skipped_over_cap": 17,
+    "categories": {
+      "loss": 5,
+      "unconfirmed loss": 4,
+      "both": 8,
+      "neither": 2,
+      "new only": 6,
+      "undecided": 1
+    },
+    "rows": [
+      {
+        "id": "src/billing.py:3:8:SDL:1",
+        "op": "SDL",
+        "path": "src/billing.py",
+        "line": 3,
+        "what": "delete Raise",
+        "before": "raise ValueError(\"negative subtotal\")",
+        "after": "pass",
+        "rank": 0,
+        "old_caught_by": [
+          "tests.test_billing::test_negative_subtotal_raises"
+        ],
+        "new_caught_by": null,
+        "category": "loss",
+        "suite_caught_by": null,
+        "confirmation": "repeated"
+      },
+      {
+        "id": "src/billing.py:5:8:SDL:1",
+        "op": "SDL",
+        "path": "src/billing.py",
+        "line": 5,
+        "what": "delete Raise",
+        "before": "raise ValueError(\"negative tax\")",
+        "after": "pass",
+        "rank": 0,
+        "old_caught_by": [
+          "tests.test_billing::test_flaky_negative_tax"
+        ],
+        "new_caught_by": null,
+        "category": "unconfirmed loss",
+        "suite_caught_by": null,
+        "confirmation": "the old tests did not catch it again"
+      },
+      {
+        "id": "src/billing.py:2:7:AOIU:1",
+        "op": "AOIU",
+        "path": "src/billing.py",
+        "line": 2,
+        "what": "insert -",
+        "before": "subtotal",
+        "after": "(-subtotal)",
+        "rank": 2,
+        "old_caught_by": [
+          "tests.test_billing::test_negative_subtotal_raises"
+        ],
+        "new_caught_by": [
+          "tests.test_billing::test_legacy_promo_behavior"
+        ],
+        "category": "both"
+      },
+      {
+        "id": "src/billing.py:2:7:ROR:1",
+        "op": "ROR",
+        "path": "src/billing.py",
+        "line": 2,
+        "what": "< -> >",
+        "before": "<",
+        "after": ">",
+        "rank": 2,
+        "old_caught_by": [
+          "tests.test_billing::test_negative_subtotal_raises"
+        ],
+        "new_caught_by": [
+          "tests.test_billing::test_legacy_promo_behavior"
+        ],
+        "category": "both"
+      },
+      {
+        "id": "src/billing.py:2:7:ROR:2",
+        "op": "ROR",
+        "path": "src/billing.py",
+        "line": 2,
+        "what": "< -> >=",
+        "before": "<",
+        "after": ">=",
+        "rank": 2,
+        "old_caught_by": [
+          "tests.test_billing::test_negative_subtotal_raises"
+        ],
+        "new_caught_by": [
+          "tests.test_billing::test_legacy_promo_behavior"
+        ],
+        "category": "both"
+      },
+      {
+        "id": "src/billing.py:2:7:ROR:3",
+        "op": "ROR",
+        "path": "src/billing.py",
+        "line": 2,
+        "what": "< -> <=",
+        "before": "<",
+        "after": "<=",
+        "rank": 2,
+        "old_caught_by": null,
+        "new_caught_by": null,
+        "category": "neither"
+      },
+      {
+        "id": "src/billing.py:2:7:ROR:4",
+        "op": "ROR",
+        "path": "src/billing.py",
+        "line": 2,
+        "what": "< -> ==",
+        "before": "<",
+        "after": "==",
+        "rank": 2,
+        "old_caught_by": [
+          "tests.test_billing::test_negative_subtotal_raises"
+        ],
+        "new_caught_by": null,
+        "category": "loss",
+        "suite_caught_by": null,
+        "confirmation": "repeated"
+      },
+      {
+        "id": "src/billing.py:2:7:ROR:5",
+        "op": "ROR",
+        "path": "src/billing.py",
+        "line": 2,
+        "what": "< -> !=",
+        "before": "<",
+        "after": "!=",
+        "rank": 2,
+        "old_caught_by": null,
+        "new_caught_by": [
+          "tests.test_billing::test_legacy_promo_behavior"
+        ],
+        "category": "new only"
+      },
+      {
+        "id": "src/billing.py:2:7:ROR:6",
+        "op": "ROR",
+        "path": "src/billing.py",
+        "line": 2,
+        "what": "predicate -> True",
+        "before": "subtotal < 0",
+        "after": "True",
+        "rank": 2,
+        "old_caught_by": null,
+        "new_caught_by": [
+          "tests.test_billing::test_legacy_promo_behavior"
+        ],
+        "category": "new only"
+      },
+      {
+        "id": "src/billing.py:2:7:ROR:7",
+        "op": "ROR",
+        "path": "src/billing.py",
+        "line": 2,
+        "what": "predicate -> False",
+        "before": "subtotal < 0",
+        "after": "False",
+        "rank": 2,
+        "old_caught_by": [
+          "tests.test_billing::test_negative_subtotal_raises"
+        ],
+        "new_caught_by": null,
+        "category": "loss",
+        "suite_caught_by": null,
+        "confirmation": "repeated"
+      },
+      {
+        "id": "src/billing.py:2:7:COI:1",
+        "op": "COI",
+        "path": "src/billing.py",
+        "line": 2,
+        "what": "insert not",
+        "before": "subtotal < 0",
+        "after": "(not (subtotal < 0))",
+        "rank": 2,
+        "old_caught_by": [
+          "tests.test_billing::test_negative_subtotal_raises"
+        ],
+        "new_caught_by": [
+          "tests.test_billing::test_legacy_promo_behavior"
+        ],
+        "category": "both"
+      },
+      {
+        "id": "src/billing.py:2:7:LOI:1",
+        "op": "LOI",
+        "path": "src/billing.py",
+        "line": 2,
+        "what": "insert ~",
+        "before": "subtotal",
+        "after": "(~subtotal)",
+        "rank": 2,
+        "old_caught_by": [
+          "tests.test_billing::test_negative_subtotal_raises"
+        ],
+        "new_caught_by": [
+          "tests.test_billing::test_legacy_promo_behavior"
+        ],
+        "category": "both"
+      },
+      {
+        "id": "src/billing.py:2:4:SDL:1",
+        "op": "SDL",
+        "path": "src/billing.py",
+        "line": 2,
+        "what": "delete If (whole block)",
+        "before": "if subtotal < 0:\n        raise ValueError(\"negative subtotal\")",
+        "after": "pass",
+        "rank": 2,
+        "old_caught_by": [
+          "tests.test_billing::test_negative_subtotal_raises"
+        ],
+        "new_caught_by": null,
+        "category": "loss",
+        "suite_caught_by": null,
+        "confirmation": "repeated"
+      },
+      {
+        "id": "src/billing.py:2:7:VDL:1",
+        "op": "VDL",
+        "path": "src/billing.py",
+        "line": 2,
+        "what": "delete variable 'subtotal'",
+        "before": "subtotal < 0",
+        "after": "(0)",
+        "rank": 2,
+        "old_caught_by": [
+          "tests.test_billing::test_negative_subtotal_raises"
+        ],
+        "new_caught_by": null,
+        "category": "loss",
+        "suite_caught_by": null,
+        "confirmation": "repeated"
+      },
+      {
+        "id": "src/billing.py:2:7:CDL:1",
+        "op": "CDL",
+        "path": "src/billing.py",
+        "line": 2,
+        "what": "delete constant '0'",
+        "before": "subtotal < 0",
+        "after": "(subtotal)",
+        "rank": 2,
+        "old_caught_by": null,
+        "new_caught_by": [
+          "tests.test_billing::test_legacy_promo_behavior"
+        ],
+        "category": "new only"
+      },
+      {
+        "id": "src/billing.py:4:7:AOIU:1",
+        "op": "AOIU",
+        "path": "src/billing.py",
+        "line": 4,
+        "what": "insert -",
+        "before": "tax",
+        "after": "(-tax)",
+        "rank": 2,
+        "old_caught_by": [
+          "tests.test_billing::test_flaky_negative_tax"
+        ],
+        "new_caught_by": null,
+        "category": "unconfirmed loss",
+        "suite_caught_by": null,
+        "confirmation": "the old tests did not catch it again"
+      },
+      {
+        "id": "src/billing.py:4:13:AODU:1",
+        "op": "AODU",
+        "path": "src/billing.py",
+        "line": 4,
+        "what": "delete unary operator",
+        "before": "-100",
+        "after": "(100)",
+        "rank": 2,
+        "old_caught_by": null,
+        "new_caught_by": [
+          "tests.test_billing::test_legacy_promo_behavior"
+        ],
+        "category": "new only"
+      },
+      {
+        "id": "src/billing.py:4:7:ROR:1",
+        "op": "ROR",
+        "path": "src/billing.py",
+        "line": 4,
+        "what": "< -> >",
+        "before": "<",
+        "after": ">",
+        "rank": 2,
+        "old_caught_by": [
+          "tests.test_billing::test_flaky_negative_tax"
+        ],
+        "new_caught_by": [
+          "tests.test_billing::test_legacy_promo_behavior"
+        ],
+        "category": "both"
+      },
+      {
+        "id": "src/billing.py:4:7:ROR:2",
+        "op": "ROR",
+        "path": "src/billing.py",
+        "line": 4,
+        "what": "< -> >=",
+        "before": "<",
+        "after": ">=",
+        "rank": 2,
+        "old_caught_by": [
+          "tests.test_billing::test_flaky_negative_tax"
+        ],
+        "new_caught_by": [
+          "tests.test_billing::test_legacy_promo_behavior"
+        ],
+        "category": "both"
+      },
+      {
+        "id": "src/billing.py:4:7:ROR:3",
+        "op": "ROR",
+        "path": "src/billing.py",
+        "line": 4,
+        "what": "< -> <=",
+        "before": "<",
+        "after": "<=",
+        "rank": 2,
+        "old_caught_by": null,
+        "new_caught_by": null,
+        "category": "neither"
+      },
+      {
+        "id": "src/billing.py:4:7:ROR:4",
+        "op": "ROR",
+        "path": "src/billing.py",
+        "line": 4,
+        "what": "< -> ==",
+        "before": "<",
+        "after": "==",
+        "rank": 2,
+        "old_caught_by": [
+          "tests.test_billing::test_flaky_negative_tax"
+        ],
+        "new_caught_by": null,
+        "category": "unconfirmed loss",
+        "suite_caught_by": null,
+        "confirmation": "the old tests did not catch it again"
+      },
+      {
+        "id": "src/billing.py:4:7:ROR:5",
+        "op": "ROR",
+        "path": "src/billing.py",
+        "line": 4,
+        "what": "< -> !=",
+        "before": "<",
+        "after": "!=",
+        "rank": 2,
+        "old_caught_by": null,
+        "new_caught_by": [
+          "tests.test_billing::test_legacy_promo_behavior"
+        ],
+        "category": "new only"
+      },
+      {
+        "id": "src/billing.py:4:7:ROR:6",
+        "op": "ROR",
+        "path": "src/billing.py",
+        "line": 4,
+        "what": "predicate -> True",
+        "before": "tax < -100",
+        "after": "True",
+        "rank": 2,
+        "old_caught_by": null,
+        "new_caught_by": [
+          "tests.test_billing::test_legacy_promo_behavior"
+        ],
+        "category": "new only"
+      },
+      {
+        "id": "src/billing.py:4:7:ROR:7",
+        "op": "ROR",
+        "path": "src/billing.py",
+        "line": 4,
+        "what": "predicate -> False",
+        "before": "tax < -100",
+        "after": "False",
+        "rank": 2,
+        "old_caught_by": [
+          "tests.test_billing::test_flaky_negative_tax"
+        ],
+        "new_caught_by": null,
+        "category": "unconfirmed loss",
+        "suite_caught_by": null,
+        "confirmation": "the old tests did not catch it again"
+      },
+      {
+        "id": "src/billing.py:4:7:COI:1",
+        "op": "COI",
+        "path": "src/billing.py",
+        "line": 4,
+        "what": "insert not",
+        "before": "tax < -100",
+        "after": "(not (tax < -100))",
+        "rank": 2,
+        "old_caught_by": [
+          "tests.test_billing::test_flaky_negative_tax"
+        ],
+        "new_caught_by": [
+          "tests.test_billing::test_legacy_promo_behavior"
+        ],
+        "category": "both"
+      },
+      {
+        "id": "src/guard.py:3:8:SDL:1",
+        "op": "SDL",
+        "path": "src/guard.py",
+        "line": 3,
+        "what": "delete Raise",
+        "before": "raise ValueError(\"non-positive\")",
+        "after": "pass",
+        "rank": 0,
+        "old_caught_by": [
+          "tests.test_guard::test_guard"
+        ],
+        "new_caught_by": null,
+        "category": "undecided",
+        "suite_caught_by": null
+      }
+    ]
+  },
+  "compared": true,
+  "nothing_to_compare": false,
+  "pytest_version": "9.1",
+  "tests": {
+    "old": [
+      "tests/test_billing.py"
+    ],
+    "new": [
+      "tests/test_billing.py"
+    ]
+  },
+  "test_suite_files_changed": [
+    "tests/test_billing.py"
+  ],
+  "product_files_changed": [
+    "src/billing.py"
+  ],
+  "workdir": null,
+  "import_root": "src",
+  "budgets": {
+    "old": 30,
+    "new": 30,
+    "suite": 30
+  },
+  "status": "done",
+  "seconds": 61.8
+}

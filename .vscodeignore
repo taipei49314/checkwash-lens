@@ -1,0 +1,16 @@
+# Default-deny allowlist: only explicitly approved production files may enter a VSIX (RT-10).
+# VERSION-LOCAL.json, evidence/, src/, native/, fixtures/, scripts/, dist/test/, and maps stay strictly local.
+*
+!package.json
+!README.md
+!CHANGELOG.md
+!LICENSE
+!media/**
+!bundled/**
+bundled/upstream.json
+!docs/**
+docs/PHASE0-EXIT-REPORT.md
+!dist/*.js
+!dist/**/*.js
+dist/test/**
+**/*.js.map

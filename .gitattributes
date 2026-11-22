@@ -1,0 +1,8 @@
+# Normalize text files to LF across Windows and Linux so fixture SHA-256 digests and VSIX archives stay byte-deterministic
+* text=auto eol=lf
+
+# Ensure binary artifacts are never altered by line-ending conversion
+*.png binary
+*.pyz binary
+*.exe binary
+bundled/checkwash-broker-* binary

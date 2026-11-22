@@ -1,0 +1,233 @@
+{
+  "tool": "checkwash-prove",
+  "experimental": true,
+  "catalogue": {
+    "version": "v0.5-m2",
+    "generator_sha256": "67096f7340a281585aaeaf801ae0ac29c4eb1a777c358ee973f02058cc7f4e14"
+  },
+  "range": "aa2f738687d57b71451134c28b4d8e8412746e28..9f667775083e9371cbcfce7e669057c8af2bf40b",
+  "base": "aa2f738687d57b71451134c28b4d8e8412746e28",
+  "head": "9f667775083e9371cbcfce7e669057c8af2bf40b",
+  "from_merge_base": false,
+  "python": "C:\\Python311\\python.exe",
+  "host_python": "3.11.9",
+  "options": {
+    "workers": 1,
+    "timeout": 30,
+    "suite_timeout": 900,
+    "max_mutants": 10,
+    "import_root": null,
+    "strict_warnings": false,
+    "only": null,
+    "keep": false,
+    "list_only": false
+  },
+  "needs_clarification": [],
+  "protection_losses": [],
+  "unconfirmed_losses": [],
+  "notes": [
+    "the old tree's own test collection could not be read, so test modules it may exclude count as protection",
+    "the new tree's own test collection could not be read, so test modules it may exclude count as protection",
+    "old tests ran with -W ignore::DeprecationWarning (a deprecated name still works); use --strict-warnings to keep the project's warning settings",
+    "3 mutant(s) only the old tests catch are undecided: the whole new suite gave no usable clean run (pytest exit 3; for a timeout, raise --suite-timeout)"
+  ],
+  "mutation": {
+    "generated": 15,
+    "run": 10,
+    "skipped_over_cap": 5,
+    "categories": {
+      "undecided": 3,
+      "both": 6,
+      "neither": 1
+    },
+    "rows": [
+      {
+        "id": "src/guard.py:3:8:SDL:1",
+        "op": "SDL",
+        "path": "src/guard.py",
+        "line": 3,
+        "what": "delete Raise",
+        "before": "raise ValueError(\"non-positive\")",
+        "after": "pass",
+        "rank": 0,
+        "old_caught_by": [
+          "tests.test_guard::test_guard"
+        ],
+        "new_caught_by": null,
+        "category": "undecided",
+        "suite_caught_by": null
+      },
+      {
+        "id": "src/guard.py:2:7:AOIU:1",
+        "op": "AOIU",
+        "path": "src/guard.py",
+        "line": 2,
+        "what": "insert -",
+        "before": "v",
+        "after": "(-v)",
+        "rank": 3,
+        "old_caught_by": [
+          "tests.test_guard::test_guard"
+        ],
+        "new_caught_by": [
+          "tests.test_guard::test_guard"
+        ],
+        "category": "both"
+      },
+      {
+        "id": "src/guard.py:2:7:ROR:1",
+        "op": "ROR",
+        "path": "src/guard.py",
+        "line": 2,
+        "what": "<= -> >",
+        "before": "<=",
+        "after": ">",
+        "rank": 3,
+        "old_caught_by": [
+          "tests.test_guard::test_guard"
+        ],
+        "new_caught_by": [
+          "tests.test_guard::test_guard"
+        ],
+        "category": "both"
+      },
+      {
+        "id": "src/guard.py:2:7:ROR:2",
+        "op": "ROR",
+        "path": "src/guard.py",
+        "line": 2,
+        "what": "<= -> >=",
+        "before": "<=",
+        "after": ">=",
+        "rank": 3,
+        "old_caught_by": [
+          "tests.test_guard::test_guard"
+        ],
+        "new_caught_by": [
+          "tests.test_guard::test_guard"
+        ],
+        "category": "both"
+      },
+      {
+        "id": "src/guard.py:2:7:ROR:3",
+        "op": "ROR",
+        "path": "src/guard.py",
+        "line": 2,
+        "what": "<= -> <",
+        "before": "<=",
+        "after": "<",
+        "rank": 3,
+        "old_caught_by": [
+          "tests.test_guard::test_guard"
+        ],
+        "new_caught_by": null,
+        "category": "undecided",
+        "suite_caught_by": null
+      },
+      {
+        "id": "src/guard.py:2:7:ROR:4",
+        "op": "ROR",
+        "path": "src/guard.py",
+        "line": 2,
+        "what": "<= -> ==",
+        "before": "<=",
+        "after": "==",
+        "rank": 3,
+        "old_caught_by": null,
+        "new_caught_by": null,
+        "category": "neither"
+      },
+      {
+        "id": "src/guard.py:2:7:ROR:5",
+        "op": "ROR",
+        "path": "src/guard.py",
+        "line": 2,
+        "what": "<= -> !=",
+        "before": "<=",
+        "after": "!=",
+        "rank": 3,
+        "old_caught_by": [
+          "tests.test_guard::test_guard"
+        ],
+        "new_caught_by": [
+          "tests.test_guard::test_guard"
+        ],
+        "category": "both"
+      },
+      {
+        "id": "src/guard.py:2:7:ROR:6",
+        "op": "ROR",
+        "path": "src/guard.py",
+        "line": 2,
+        "what": "predicate -> True",
+        "before": "v <= 0",
+        "after": "True",
+        "rank": 3,
+        "old_caught_by": [
+          "tests.test_guard::test_guard"
+        ],
+        "new_caught_by": [
+          "tests.test_guard::test_guard"
+        ],
+        "category": "both"
+      },
+      {
+        "id": "src/guard.py:2:7:ROR:7",
+        "op": "ROR",
+        "path": "src/guard.py",
+        "line": 2,
+        "what": "predicate -> False",
+        "before": "v <= 0",
+        "after": "False",
+        "rank": 3,
+        "old_caught_by": [
+          "tests.test_guard::test_guard"
+        ],
+        "new_caught_by": null,
+        "category": "undecided",
+        "suite_caught_by": null
+      },
+      {
+        "id": "src/guard.py:2:7:COI:1",
+        "op": "COI",
+        "path": "src/guard.py",
+        "line": 2,
+        "what": "insert not",
+        "before": "v <= 0",
+        "after": "(not (v <= 0))",
+        "rank": 3,
+        "old_caught_by": [
+          "tests.test_guard::test_guard"
+        ],
+        "new_caught_by": [
+          "tests.test_guard::test_guard"
+        ],
+        "category": "both"
+      }
+    ]
+  },
+  "compared": true,
+  "nothing_to_compare": false,
+  "pytest_version": "9.1",
+  "tests": {
+    "old": [
+      "tests/test_guard.py"
+    ],
+    "new": [
+      "tests/test_guard.py"
+    ]
+  },
+  "test_suite_files_changed": [
+    "tests/test_guard.py"
+  ],
+  "product_files_changed": [],
+  "workdir": null,
+  "import_root": "src",
+  "budgets": {
+    "old": 30,
+    "new": 30,
+    "suite": 30
+  },
+  "status": "done",
+  "seconds": 21.8
+}

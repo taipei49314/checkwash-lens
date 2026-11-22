@@ -1,0 +1,18 @@
+{
+  "checkwash_findings_version": 2,
+  "config_errors": [],
+  "findings": [],
+  "run": {
+    "base": "4666f10",
+    "checkwash_version": "0.13.1",
+    "head": "da00bac"
+  },
+  "skipped_files": [],
+  "summary": {
+    "critical": 0,
+    "high": 0,
+    "info": 0,
+    "warn": 0
+  },
+  "verdict": "pass"
+}

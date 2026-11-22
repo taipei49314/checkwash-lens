@@ -1,0 +1,40 @@
+{
+  "tool": "checkwash-prove",
+  "experimental": true,
+  "catalogue": {
+    "version": "v0.5-m2",
+    "generator_sha256": "67096f7340a281585aaeaf801ae0ac29c4eb1a777c358ee973f02058cc7f4e14"
+  },
+  "range": "9eb5d6b0615b1148c0d7cf46e2d564721ff7711e..2966128ac93c00dbfb8a2b7e9b659c9ff0a105f2",
+  "base": "9eb5d6b0615b1148c0d7cf46e2d564721ff7711e",
+  "head": "2966128ac93c00dbfb8a2b7e9b659c9ff0a105f2",
+  "from_merge_base": false,
+  "python": "C:\\Python311\\python.exe",
+  "host_python": "3.11.9",
+  "options": {
+    "workers": 1,
+    "timeout": 30,
+    "suite_timeout": 120,
+    "max_mutants": 10,
+    "import_root": null,
+    "strict_warnings": false,
+    "only": null,
+    "keep": false,
+    "list_only": false
+  },
+  "needs_clarification": [],
+  "protection_losses": [],
+  "unconfirmed_losses": [],
+  "notes": [],
+  "mutation": {},
+  "compared": false,
+  "nothing_to_compare": true,
+  "pytest_version": "9.1",
+  "tests": {
+    "old": [],
+    "new": []
+  },
+  "test_suite_files_changed": [],
+  "product_files_changed": [],
+  "status": "nothing to compare: the range changes no test file"
+}

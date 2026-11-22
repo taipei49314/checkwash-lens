@@ -1,0 +1,241 @@
+{
+  "tool": "checkwash-prove",
+  "experimental": true,
+  "catalogue": {
+    "version": "v0.5-m2",
+    "generator_sha256": "67096f7340a281585aaeaf801ae0ac29c4eb1a777c358ee973f02058cc7f4e14"
+  },
+  "range": "4666f1081223951fe3aed7a835337ef4b72f7ab7..da00bacfc4a42a5468742c34914d5cc14617c308",
+  "base": "4666f1081223951fe3aed7a835337ef4b72f7ab7",
+  "head": "da00bacfc4a42a5468742c34914d5cc14617c308",
+  "from_merge_base": false,
+  "python": "C:\\Python311\\python.exe",
+  "host_python": "3.11.9",
+  "options": {
+    "workers": 1,
+    "timeout": 30,
+    "suite_timeout": 120,
+    "max_mutants": 10,
+    "import_root": null,
+    "strict_warnings": false,
+    "only": null,
+    "keep": false,
+    "list_only": false
+  },
+  "needs_clarification": [],
+  "protection_losses": [],
+  "unconfirmed_losses": [],
+  "notes": [
+    "old tests ran with -W ignore::DeprecationWarning (a deprecated name still works); use --strict-warnings to keep the project's warning settings"
+  ],
+  "mutation": {
+    "generated": 59,
+    "run": 10,
+    "skipped_over_cap": 49,
+    "categories": {
+      "both": 9,
+      "neither": 1
+    },
+    "rows": [
+      {
+        "id": "src/calc.py:2:7:AOIU:1",
+        "op": "AOIU",
+        "path": "src/calc.py",
+        "line": 2,
+        "what": "insert -",
+        "before": "price",
+        "after": "(-price)",
+        "rank": 3,
+        "old_caught_by": [
+          "tests.test_calc::test_discount_negative_raises",
+          "tests.test_calc::test_discount_normal"
+        ],
+        "new_caught_by": [
+          "tests.test_calc::test_discount_negative_raises",
+          "tests.test_calc::test_discount_normal"
+        ],
+        "category": "both"
+      },
+      {
+        "id": "src/calc.py:2:7:ROR:1",
+        "op": "ROR",
+        "path": "src/calc.py",
+        "line": 2,
+        "what": "< -> >",
+        "before": "<",
+        "after": ">",
+        "rank": 3,
+        "old_caught_by": [
+          "tests.test_calc::test_discount_negative_raises",
+          "tests.test_calc::test_discount_normal"
+        ],
+        "new_caught_by": [
+          "tests.test_calc::test_discount_negative_raises",
+          "tests.test_calc::test_discount_normal"
+        ],
+        "category": "both"
+      },
+      {
+        "id": "src/calc.py:2:7:ROR:2",
+        "op": "ROR",
+        "path": "src/calc.py",
+        "line": 2,
+        "what": "< -> >=",
+        "before": "<",
+        "after": ">=",
+        "rank": 3,
+        "old_caught_by": [
+          "tests.test_calc::test_discount_negative_raises",
+          "tests.test_calc::test_discount_normal"
+        ],
+        "new_caught_by": [
+          "tests.test_calc::test_discount_negative_raises",
+          "tests.test_calc::test_discount_normal"
+        ],
+        "category": "both"
+      },
+      {
+        "id": "src/calc.py:2:7:ROR:3",
+        "op": "ROR",
+        "path": "src/calc.py",
+        "line": 2,
+        "what": "< -> <=",
+        "before": "<",
+        "after": "<=",
+        "rank": 3,
+        "old_caught_by": null,
+        "new_caught_by": null,
+        "category": "neither"
+      },
+      {
+        "id": "src/calc.py:2:7:ROR:4",
+        "op": "ROR",
+        "path": "src/calc.py",
+        "line": 2,
+        "what": "< -> ==",
+        "before": "<",
+        "after": "==",
+        "rank": 3,
+        "old_caught_by": [
+          "tests.test_calc::test_discount_negative_raises"
+        ],
+        "new_caught_by": [
+          "tests.test_calc::test_discount_negative_raises"
+        ],
+        "category": "both"
+      },
+      {
+        "id": "src/calc.py:2:7:ROR:5",
+        "op": "ROR",
+        "path": "src/calc.py",
+        "line": 2,
+        "what": "< -> !=",
+        "before": "<",
+        "after": "!=",
+        "rank": 3,
+        "old_caught_by": [
+          "tests.test_calc::test_discount_normal"
+        ],
+        "new_caught_by": [
+          "tests.test_calc::test_discount_normal"
+        ],
+        "category": "both"
+      },
+      {
+        "id": "src/calc.py:2:7:ROR:6",
+        "op": "ROR",
+        "path": "src/calc.py",
+        "line": 2,
+        "what": "predicate -> True",
+        "before": "price < 0",
+        "after": "True",
+        "rank": 3,
+        "old_caught_by": [
+          "tests.test_calc::test_discount_normal"
+        ],
+        "new_caught_by": [
+          "tests.test_calc::test_discount_normal"
+        ],
+        "category": "both"
+      },
+      {
+        "id": "src/calc.py:2:7:ROR:7",
+        "op": "ROR",
+        "path": "src/calc.py",
+        "line": 2,
+        "what": "predicate -> False",
+        "before": "price < 0",
+        "after": "False",
+        "rank": 3,
+        "old_caught_by": [
+          "tests.test_calc::test_discount_negative_raises"
+        ],
+        "new_caught_by": [
+          "tests.test_calc::test_discount_negative_raises"
+        ],
+        "category": "both"
+      },
+      {
+        "id": "src/calc.py:2:7:COI:1",
+        "op": "COI",
+        "path": "src/calc.py",
+        "line": 2,
+        "what": "insert not",
+        "before": "price < 0",
+        "after": "(not (price < 0))",
+        "rank": 3,
+        "old_caught_by": [
+          "tests.test_calc::test_discount_negative_raises",
+          "tests.test_calc::test_discount_normal"
+        ],
+        "new_caught_by": [
+          "tests.test_calc::test_discount_negative_raises",
+          "tests.test_calc::test_discount_normal"
+        ],
+        "category": "both"
+      },
+      {
+        "id": "src/calc.py:2:7:LOI:1",
+        "op": "LOI",
+        "path": "src/calc.py",
+        "line": 2,
+        "what": "insert ~",
+        "before": "price",
+        "after": "(~price)",
+        "rank": 3,
+        "old_caught_by": [
+          "tests.test_calc::test_discount_negative_raises",
+          "tests.test_calc::test_discount_normal"
+        ],
+        "new_caught_by": [
+          "tests.test_calc::test_discount_negative_raises",
+          "tests.test_calc::test_discount_normal"
+        ],
+        "category": "both"
+      }
+    ]
+  },
+  "compared": true,
+  "nothing_to_compare": false,
+  "pytest_version": "9.1",
+  "tests": {
+    "old": [
+      "tests/test_calc.py"
+    ],
+    "new": [
+      "tests/test_calc.py"
+    ]
+  },
+  "test_suite_files_changed": [
+    "tests/test_calc.py"
+  ],
+  "product_files_changed": [],
+  "workdir": null,
+  "import_root": "src",
+  "budgets": {
+    "old": 30,
+    "new": 30
+  },
+  "status": "done",
+  "seconds": 20.7
+}

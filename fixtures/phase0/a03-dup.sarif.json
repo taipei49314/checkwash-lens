@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json.schemastore.org/sarif-2.1.0.json",
+  "runs": [
+    {
+      "properties": {
+        "checkwash.base": "da00bac",
+        "checkwash.head": "9eb5d6b"
+      },
+      "results": [
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "tests/test_calc.py"
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "test_discount_normal: assertion removed (strength EXACT_VALUE)"
+          },
+          "partialFingerprints": {
+            "checkwash/v2": "ASSERT_REMOVED/tests/test_calc.py/test_discount_normal/v2:b966dfc7f1c78163d66088a49454b14a159396ae53fad8c36e3d3e63b7a8ccb2"
+          },
+          "properties": {
+            "checkwash.evidenceSide": "base",
+            "checkwash.evidenceText": "assert compute_discount(200, 0) == 200"
+          },
+          "ruleId": "ASSERT_REMOVED"
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "tests/test_calc.py"
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "test_discount_normal: assertion removed (strength EXACT_VALUE)"
+          },
+          "partialFingerprints": {
+            "checkwash/v2": "ASSERT_REMOVED/tests/test_calc.py/test_discount_normal/v2:b966dfc7f1c78163d66088a49454b14a159396ae53fad8c36e3d3e63b7a8ccb2"
+          },
+          "properties": {
+            "checkwash.evidenceSide": "base",
+            "checkwash.evidenceText": "assert compute_discount(200, 0) == 200"
+          },
+          "ruleId": "ASSERT_REMOVED"
+        }
+      ],
+      "tool": {
+        "driver": {
+          "informationUri": "https://github.com/taipei49314/checkwash",
+          "name": "checkwash",
+          "rules": [
+            {
+              "id": "ASSERT_REMOVED",
+              "name": "ASSERT_REMOVED",
+              "shortDescription": {
+                "text": "ASSERT_REMOVED"
+              }
+            },
+            {
+              "id": "ASSERT_WEAKENED",
+              "name": "ASSERT_WEAKENED",
+              "shortDescription": {
+                "text": "ASSERT_WEAKENED"
+              }
+            },
+            {
+              "id": "TEST_DISABLED",
+              "name": "TEST_DISABLED",
+              "shortDescription": {
+                "text": "TEST_DISABLED"
+              }
+            }
+          ],
+          "semanticVersion": "0.13.1"
+        }
+      }
+    }
+  ],
+  "version": "2.1.0"
+}

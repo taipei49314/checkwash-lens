@@ -1,0 +1,33 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Run Extension (Checkwash Lens)",
+      "type": "extensionHost",
+      "request": "launch",
+      "args": [
+        "--extensionDevelopmentPath=${workspaceFolder}",
+        "${workspaceFolder}"
+      ],
+      "outFiles": [
+        "${workspaceFolder}/dist/**/*.js"
+      ],
+      "preLaunchTask": "tsc: build - tsconfig.json"
+    },
+    {
+      "name": "Extension Host Tests (Real VS Code Host)",
+      "type": "extensionHost",
+      "request": "launch",
+      "args": [
+        "--disable-workspace-trust",
+        "--extensionDevelopmentPath=${workspaceFolder}",
+        "--extensionTestsPath=${workspaceFolder}/dist/test/vscode_real_host_entry.js",
+        "${workspaceFolder}"
+      ],
+      "outFiles": [
+        "${workspaceFolder}/dist/**/*.js"
+      ],
+      "preLaunchTask": "tsc: build - tsconfig.json"
+    }
+  ]
+}

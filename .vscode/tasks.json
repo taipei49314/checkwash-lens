@@ -1,0 +1,33 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "tsc: build - tsconfig.json",
+      "type": "process",
+      "command": "node",
+      "args": [
+        "./node_modules/typescript/bin/tsc",
+        "-p",
+        "."
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": [
+        "$tsc"
+      ],
+      "detail": "Compile TypeScript without requiring PowerShell npm.ps1 execution policy"
+    },
+    {
+      "label": "test: phase5 extension host suite",
+      "type": "process",
+      "command": "node",
+      "args": [
+        "./dist/test/phase5_extension_host_runner.js"
+      ],
+      "dependsOn": "tsc: build - tsconfig.json",
+      "group": "test"
+    }
+  ]
+}

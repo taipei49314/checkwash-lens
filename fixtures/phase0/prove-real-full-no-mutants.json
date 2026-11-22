@@ -1,0 +1,54 @@
+{
+  "tool": "checkwash-prove",
+  "experimental": true,
+  "catalogue": {
+    "version": "v0.5-m2",
+    "generator_sha256": "67096f7340a281585aaeaf801ae0ac29c4eb1a777c358ee973f02058cc7f4e14"
+  },
+  "range": "b7d9de5c2cee4f7c07dae51cd65629079b36b36f..21a2b189915726c84d5f8e3b4fd6f67e99d6d54d",
+  "base": "b7d9de5c2cee4f7c07dae51cd65629079b36b36f",
+  "head": "21a2b189915726c84d5f8e3b4fd6f67e99d6d54d",
+  "from_merge_base": false,
+  "python": "C:\\Python311\\python.exe",
+  "host_python": "3.11.9",
+  "options": {
+    "workers": 1,
+    "timeout": 30,
+    "suite_timeout": 900,
+    "max_mutants": 10,
+    "import_root": null,
+    "strict_warnings": false,
+    "only": null,
+    "keep": false,
+    "list_only": false
+  },
+  "needs_clarification": [],
+  "protection_losses": [],
+  "unconfirmed_losses": [],
+  "notes": [
+    "old tests ran with -W ignore::DeprecationWarning (a deprecated name still works); use --strict-warnings to keep the project's warning settings"
+  ],
+  "mutation": {
+    "generated": 0,
+    "run": 0,
+    "skipped_over_cap": 0
+  },
+  "compared": false,
+  "nothing_to_compare": false,
+  "pytest_version": "9.1",
+  "tests": {
+    "old": [
+      "tests/test_mod.py"
+    ],
+    "new": [
+      "tests/test_mod.py"
+    ]
+  },
+  "test_suite_files_changed": [
+    "tests/test_mod.py"
+  ],
+  "product_files_changed": [],
+  "workdir": null,
+  "import_root": "src",
+  "status": "no mutants: the old tests executed no product line under the import root that the catalogue mutates, so nothing was compared"
+}

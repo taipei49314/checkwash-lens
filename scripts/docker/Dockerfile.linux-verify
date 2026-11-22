@@ -1,0 +1,77 @@
+# Reproducible Linux x64 Verification Environment for Checkwash Lens v0.3.0
+# Base: Debian 12 (Bookworm) + CPython 3.11.9 + Node 20 LTS + Official VS Code Linux x64 + checkwash-prove v0.1.0
+
+FROM node:20 AS node_runtime
+
+FROM python:3.11.9-bookworm
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+COPY --from=node_runtime /usr/local/bin/node /usr/local/bin/node
+COPY --from=node_runtime /usr/local/lib/node_modules /usr/local/lib/node_modules
+RUN ln -sf /usr/local/lib/node_modules/npm/bin/npm-cli.js /usr/local/bin/npm \
+ && ln -sf /usr/local/lib/node_modules/npm/bin/npx-cli.js /usr/local/bin/npx
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    ca-certificates \
+    curl \
+    dbus-x11 \
+    gcc \
+    git \
+    libasound2 \
+    libatk-bridge2.0-0 \
+    libatk1.0-0 \
+    libc6-dev \
+    libcairo2 \
+    libcups2 \
+    libdrm2 \
+    libgbm1 \
+    libglib2.0-0 \
+    libgtk-3-0 \
+    libnss3 \
+    libpango-1.0-0 \
+    libsecret-1-0 \
+    libx11-xcb1 \
+    libxcb-dri3-0 \
+    libxcomposite1 \
+    libxdamage1 \
+    libxfixes3 \
+    libxkbfile1 \
+    libxrandr2 \
+    libxshmfence1 \
+    procps \
+    psmisc \
+    xauth \
+    xvfb \
+ && rm -rf /var/lib/apt/lists/*
+
+# Install pytest into the host Python 3.11 runtime (required when checkwash-prove invokes --python)
+RUN python3 -m pip install --no-cache-dir "pytest>=8"
+
+# Install pinned checkwash-prove v0.1.0 into an isolated outside-repository virtualenv
+COPY checkwash-prove /tmp/checkwash-prove-src
+RUN python3 -m venv /opt/prove-venv \
+ && /opt/prove-venv/bin/pip install --no-cache-dir "hatchling==1.33.0" "pytest>=8" \
+ && /opt/prove-venv/bin/pip install --no-cache-dir --no-build-isolation /tmp/checkwash-prove-src \
+ && rm -rf /tmp/checkwash-prove-src
+
+# Download & extract official VS Code Desktop for Linux x64 (/opt/vscode/code)
+RUN mkdir -p /opt/vscode \
+ && curl -fsSL "https://update.code.visualstudio.com/latest/linux-x64/stable" -o /tmp/vscode-linux-x64.tar.gz \
+ && tar -xzf /tmp/vscode-linux-x64.tar.gz -C /opt/vscode --strip-components=1 \
+ && rm -f /tmp/vscode-linux-x64.tar.gz \
+ && test -x /opt/vscode/code \
+ && test -f /opt/vscode/resources/app/out/cli.js
+
+RUN useradd -m -u 1000 -s /bin/bash tester \
+ && mkdir -p /work \
+ && chown -R tester:tester /work
+
+ENV CW_TEST_PYTHON_EXE=/usr/local/bin/python3 \
+    CW_TEST_GIT_EXE=/usr/bin/git \
+    CW_TEST_PROVE_EXE=/opt/prove-venv/bin/checkwash-prove \
+    CW_TEST_VSCODE_EXE=/opt/vscode/code \
+    ELECTRON_DISABLE_SANDBOX=1
+
+USER tester
+WORKDIR /work

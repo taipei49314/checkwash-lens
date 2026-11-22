@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "checkwash": {
+    "version": "0.13.1",
+    "tag": "v0.13.1",
+    "repository": "taipei49314/checkwash",
+    "relativePath": "bundled/checkwash.pyz",
+    "bytes": 1079499,
+    "sha256": "0a987325c6f738129f5dbdc1e0287cfeab40517342b46df80707cccff8dd2839",
+    "downloadUrl": "https://github.com/taipei49314/checkwash/releases/download/v0.13.1/checkwash.pyz",
+    "artifactBuildSourceCommit": "5e2a89ef0d447ae6e08c289f4a3357325b7286e9",
+    "releaseTagCommit": "62656df812372c085b4d32c7864fcdfaccd0318a",
+    "releaseTagObject": "150c9ffd621e76b8dc0dbf56ca4be6bc019d9186",
+    "findingsSchemaVersion": 2,
+    "sarifVersion": "2.1.0"
+  },
+  "windowsBroker": {
+    "protocol": "CWBROKER1",
+    "relativePath": "bundled/checkwash-broker.exe",
+    "sourceRelativePath": "native/checkwash_broker.c"
+  },
+  "linuxBroker": {
+    "protocol": "CWBROKER1",
+    "relativePath": "bundled/checkwash-broker-linux-x64",
+    "sourceRelativePath": "native/checkwash_broker_posix.c"
+  },
+  "proveAdapter": {
+    "version": "0.1.0",
+    "sourceCommit": "582f1339ea48f4db48b4414648ca21316aeb0713",
+    "catalogueVersion": "v0.5-m2",
+    "generatorSha256": "67096f7340a281585aaeaf801ae0ac29c4eb1a777c358ee973f02058cc7f4e14"
+  }
+}

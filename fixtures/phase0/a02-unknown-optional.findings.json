@@ -1,0 +1,131 @@
+{
+  "checkwash_findings_version": 2,
+  "config_errors": [],
+  "findings": [
+    {
+      "after": null,
+      "allowlisted": false,
+      "before": {
+        "span": [
+          128,
+          166
+        ],
+        "text": "assert compute_discount(200, 0) == 200"
+      },
+      "deescalators": [
+        "FUTURE_DEESCALATOR_V3"
+      ],
+      "escalators": [
+        "FUTURE_ESCALATOR_V3"
+      ],
+      "fingerprint": "ASSERT_REMOVED/tests/test_calc.py/test_discount_normal/v2:b966dfc7f1c78163d66088a49454b14a159396ae53fad8c36e3d3e63b7a8ccb2",
+      "message": "test_discount_normal: assertion removed (strength EXACT_VALUE)",
+      "path": "tests/test_calc.py",
+      "rule": "CW999_FUTURE_RULE",
+      "severity": "high",
+      "shape": null,
+      "strength_after": null,
+      "strength_drop": null,
+      "subject_changed": null,
+      "unit": "test_discount_normal",
+      "extra_finding_meta": "tolerated"
+    },
+    {
+      "after": null,
+      "allowlisted": false,
+      "before": {
+        "span": [
+          171,
+          208
+        ],
+        "text": "assert compute_discount(50, 10) == 45"
+      },
+      "deescalators": [],
+      "escalators": [
+        "NO_PROD_CHANGE_IN_DIFF"
+      ],
+      "fingerprint": "ASSERT_REMOVED/tests/test_calc.py/test_discount_normal/v2:f453df16b661c1152f99fc8f701f9f323bf7c784e6c08d4e18f4e74a3ce77a3c",
+      "message": "test_discount_normal: assertion removed (strength EXACT_VALUE)",
+      "path": "tests/test_calc.py",
+      "rule": "ASSERT_REMOVED",
+      "severity": "high",
+      "shape": null,
+      "strength_after": null,
+      "strength_drop": null,
+      "subject_changed": null,
+      "unit": "test_discount_normal"
+    },
+    {
+      "after": {
+        "span": [
+          115,
+          126
+        ],
+        "text": "assert True"
+      },
+      "allowlisted": false,
+      "before": {
+        "span": [
+          85,
+          123
+        ],
+        "text": "assert compute_discount(100, 20) == 80"
+      },
+      "deescalators": [],
+      "escalators": [
+        "NO_PROD_CHANGE_IN_DIFF"
+      ],
+      "fingerprint": "ASSERT_WEAKENED/tests/test_calc.py/test_discount_normal/v2:a334ce5e7d901d39ad6680cf7ad89376dc4dae5cc265db387056fcc37848a3f1",
+      "message": "test_discount_normal: assertion strength EXACT_VALUE(90) -> TAUTOLOGY(10)",
+      "path": "tests/test_calc.py",
+      "rule": "ASSERT_WEAKENED",
+      "severity": "high",
+      "shape": null,
+      "strength_after": 10,
+      "strength_drop": 80,
+      "subject_changed": true,
+      "unit": "test_discount_normal"
+    },
+    {
+      "after": {
+        "span": [
+          129,
+          176
+        ],
+        "text": "pytest.mark.skip(reason=\"temporarily disabled\")"
+      },
+      "allowlisted": false,
+      "before": null,
+      "deescalators": [],
+      "escalators": [
+        "NO_PROD_CHANGE_IN_DIFF"
+      ],
+      "fingerprint": "TEST_DISABLED/tests/test_calc.py/test_discount_negative_raises/v2:b0c81835c0d919ea655594fe74435f04a04d04f3136fa7611a1fb9a6980c290b",
+      "message": "test_discount_negative_raises: disabling marker added (pytest.mark.skip)",
+      "path": "tests/test_calc.py",
+      "rule": "TEST_DISABLED",
+      "severity": "high",
+      "shape": "marker_added",
+      "strength_after": null,
+      "strength_drop": null,
+      "subject_changed": null,
+      "unit": "test_discount_negative_raises"
+    }
+  ],
+  "run": {
+    "base": "da00bac",
+    "checkwash_version": "0.13.1",
+    "head": "9eb5d6b"
+  },
+  "skipped_files": [],
+  "summary": {
+    "critical": 0,
+    "high": 4,
+    "info": 0,
+    "warn": 0
+  },
+  "verdict": "block",
+  "future_top_level_field": {
+    "experimental": true
+  }
+}

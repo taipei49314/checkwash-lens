@@ -1,0 +1,348 @@
+{
+  "name": "checkwash-lens",
+  "displayName": "Checkwash Lens — Test Integrity & AI Diff Guard",
+  "description": "Catch weakened assertions, skipped tests, and silent test-washing before commit or PR — powered locally by Checkwash v0.13.1 with zero auto-execution.",
+  "version": "0.2.0",
+  "publisher": "taipei49314",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/taipei49314/checkwash-lens.git"
+  },
+  "homepage": "https://github.com/taipei49314/checkwash-lens#readme",
+  "bugs": {
+    "url": "https://github.com/taipei49314/checkwash-lens/issues"
+  },
+  "qna": "https://github.com/taipei49314/checkwash-lens/issues",
+  "keywords": [
+    "checkwash",
+    "testing",
+    "test-integrity",
+    "code-review",
+    "mutation-testing",
+    "diff",
+    "ai-guard",
+    "pre-commit"
+  ],
+  "icon": "media/icon.png",
+  "galleryBanner": {
+    "color": "#0F172A",
+    "theme": "dark"
+  },
+  "engines": {
+    "vscode": "^1.96.0"
+  },
+  "os": [
+    "win32",
+    "linux"
+  ],
+  "cpu": [
+    "x64"
+  ],
+  "categories": [
+    "Linters",
+    "Testing",
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:checkwashLens.openQuickActions",
+    "onCommand:checkwashLens.selectRepository",
+    "onCommand:checkwashLens.scanCommittedRange",
+    "onCommand:checkwashLens.scanUncommittedSnapshot",
+    "onCommand:checkwashLens.runEnvironmentDoctor",
+    "onCommand:checkwashLens.cancelActiveScan",
+    "onCommand:checkwashLens.copyContextDietDiff",
+    "onCommand:checkwashLens.openImmutableRevision",
+    "onCommand:checkwashLens.openFindingDiff",
+    "onCommand:checkwashLens.openWorkspaceFileAtFinding",
+    "onCommand:checkwashLens.runProveList",
+    "onCommand:checkwashLens.runProveFull",
+    "onCommand:checkwashLens.replayMutant",
+    "onCommand:checkwashLens.viewOfflineReport",
+    "onCommand:checkwashLens.clearOfflineReportPreview",
+    "onView:checkwashLens.findingsView"
+  ],
+  "main": "./dist/extension.js",
+  "extensionKind": [
+    "workspace"
+  ],
+  "capabilities": {
+    "untrustedWorkspaces": {
+      "supported": "limited",
+      "description": "In Restricted Mode, Checkwash Lens disables all external processes (Git, Python, Checkwash, Prove, Replay). Only bounded offline report viewing is available.",
+      "restrictedConfigurations": [
+        "checkwashLens.pythonPath",
+        "checkwashLens.gitPath",
+        "checkwashLens.provePath",
+        "checkwashLens.proveTestPythonPath"
+      ]
+    },
+    "virtualWorkspaces": {
+      "supported": false,
+      "description": "Checkwash Lens requires a physical Git repository on Windows x64 or Linux x64 (including WSL2 and Dev Containers)."
+    }
+  },
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "checkwash-lens",
+          "title": "Checkwash Lens",
+          "icon": "media/checkwash-activity.svg"
+        }
+      ]
+    },
+    "views": {
+      "checkwash-lens": [
+        {
+          "id": "checkwashLens.findingsView",
+          "name": "Checkwash Lens"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "checkwashLens.openQuickActions",
+        "title": "Checkwash Lens: Quick Actions & Verdict Hub",
+        "icon": "$(zap)"
+      },
+      {
+        "command": "checkwashLens.selectRepository",
+        "title": "Checkwash Lens: Select Active Repository",
+        "icon": "$(repo)"
+      },
+      {
+        "command": "checkwashLens.scanCommittedRange",
+        "title": "Checkwash Lens: Scan Committed Range (A..B / A...B)",
+        "icon": "$(git-compare)"
+      },
+      {
+        "command": "checkwashLens.scanUncommittedSnapshot",
+        "title": "Checkwash Lens: Pre-Check Uncommitted Changes (Staged / Working Tree)",
+        "icon": "$(shield)"
+      },
+      {
+        "command": "checkwashLens.runEnvironmentDoctor",
+        "title": "Checkwash Lens: Run Environment Doctor (Runtime & Security Setup)",
+        "icon": "$(pulse)"
+      },
+      {
+        "command": "checkwashLens.cancelActiveScan",
+        "title": "Checkwash Lens: Cancel Active Scan",
+        "icon": "$(stop-circle)"
+      },
+      {
+        "command": "checkwashLens.copyContextDietDiff",
+        "title": "Checkwash Lens: Copy Context Diet Diff (With Omission & Secret Guard)",
+        "icon": "$(clippy)"
+      },
+      {
+        "command": "checkwashLens.openImmutableRevision",
+        "title": "Checkwash Lens: Open Analyzed Revision (Read-Only)",
+        "icon": "$(lock)"
+      },
+      {
+        "command": "checkwashLens.openFindingDiff",
+        "title": "Checkwash Lens: Compare Base ↔ Head Revision Diff",
+        "icon": "$(diff)"
+      },
+      {
+        "command": "checkwashLens.openWorkspaceFileAtFinding",
+        "title": "Checkwash Lens: Open Editable Workspace File at Line",
+        "icon": "$(go-to-file)"
+      },
+      {
+        "command": "checkwashLens.runProveList",
+        "title": "Checkwash Lens: Run Prove & List Candidate Mutants (Manual Execution)",
+        "icon": "$(beaker)"
+      },
+      {
+        "command": "checkwashLens.runProveFull",
+        "title": "Checkwash Lens: Run Full Prove Analysis (Manual Execution)",
+        "icon": "$(flame)"
+      },
+      {
+        "command": "checkwashLens.replayMutant",
+        "title": "Checkwash Lens: Replay Single Mutant (Manual Execution)",
+        "icon": "$(play-circle)"
+      },
+      {
+        "command": "checkwashLens.viewOfflineReport",
+        "title": "Checkwash Lens: View Offline Report (Read-Only)",
+        "icon": "$(file-code)"
+      },
+      {
+        "command": "checkwashLens.clearOfflineReportPreview",
+        "title": "Checkwash Lens: Clear Offline Report Preview",
+        "icon": "$(clear-all)"
+      }
+    ],
+    "menus": {
+      "commandPalette": [
+        {
+          "command": "checkwashLens.openImmutableRevision",
+          "when": "false"
+        },
+        {
+          "command": "checkwashLens.replayMutant",
+          "when": "false"
+        },
+        {
+          "command": "checkwashLens.openFindingDiff",
+          "when": "resourceScheme == checkwash-rev"
+        },
+        {
+          "command": "checkwashLens.openWorkspaceFileAtFinding",
+          "when": "resourceScheme == checkwash-rev"
+        }
+      ],
+      "scm/title": [
+        {
+          "command": "checkwashLens.scanUncommittedSnapshot",
+          "group": "navigation@100"
+        }
+      ],
+      "view/title": [
+        {
+          "command": "checkwashLens.scanUncommittedSnapshot",
+          "when": "view == checkwashLens.findingsView",
+          "group": "navigation@1"
+        },
+        {
+          "command": "checkwashLens.scanCommittedRange",
+          "when": "view == checkwashLens.findingsView",
+          "group": "navigation@2"
+        },
+        {
+          "command": "checkwashLens.openQuickActions",
+          "when": "view == checkwashLens.findingsView",
+          "group": "navigation@3"
+        },
+        {
+          "command": "checkwashLens.copyContextDietDiff",
+          "when": "view == checkwashLens.findingsView",
+          "group": "navigation@4"
+        },
+        {
+          "command": "checkwashLens.cancelActiveScan",
+          "when": "view == checkwashLens.findingsView",
+          "group": "navigation@5"
+        },
+        {
+          "command": "checkwashLens.selectRepository",
+          "when": "view == checkwashLens.findingsView",
+          "group": "1_workspace@1"
+        },
+        {
+          "command": "checkwashLens.runEnvironmentDoctor",
+          "when": "view == checkwashLens.findingsView",
+          "group": "1_workspace@2"
+        },
+        {
+          "command": "checkwashLens.runProveList",
+          "when": "view == checkwashLens.findingsView",
+          "group": "2_prove@1"
+        },
+        {
+          "command": "checkwashLens.runProveFull",
+          "when": "view == checkwashLens.findingsView",
+          "group": "2_prove@2"
+        },
+        {
+          "command": "checkwashLens.viewOfflineReport",
+          "when": "view == checkwashLens.findingsView",
+          "group": "3_offline@1"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "checkwashLens.openFindingDiff",
+          "when": "view == checkwashLens.findingsView && viewItem == checkwashFinding",
+          "group": "inline@1"
+        },
+        {
+          "command": "checkwashLens.openWorkspaceFileAtFinding",
+          "when": "view == checkwashLens.findingsView && viewItem == checkwashFinding",
+          "group": "inline@2"
+        },
+        {
+          "command": "checkwashLens.replayMutant",
+          "when": "view == checkwashLens.findingsView && viewItem == checkwashProveReplayable",
+          "group": "inline@1"
+        }
+      ],
+      "editor/title": [
+        {
+          "command": "checkwashLens.openFindingDiff",
+          "when": "resourceScheme == checkwash-rev",
+          "group": "navigation@1"
+        },
+        {
+          "command": "checkwashLens.openWorkspaceFileAtFinding",
+          "when": "resourceScheme == checkwash-rev",
+          "group": "navigation@2"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Checkwash Lens",
+      "properties": {
+        "checkwashLens.pythonPath": {
+          "type": "string",
+          "default": "",
+          "scope": "machine",
+          "description": "Canonical absolute path to a trusted CPython 3.11+ executable outside the target repository."
+        },
+        "checkwashLens.gitPath": {
+          "type": "string",
+          "default": "",
+          "scope": "machine",
+          "description": "Canonical absolute path to a trusted Git executable outside the target repository."
+        },
+        "checkwashLens.provePath": {
+          "type": "string",
+          "default": "",
+          "scope": "machine",
+          "description": "Canonical absolute path to a trusted checkwash-prove v0.1.0 executable outside the target repository."
+        },
+        "checkwashLens.proveTestPythonPath": {
+          "type": "string",
+          "default": "",
+          "scope": "machine",
+          "description": "Canonical absolute path to the Python interpreter used by checkwash-prove to run repository tests."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "build:bundled": "node scripts/build_bundled.js",
+    "sync:checkwash": "node scripts/sync_checkwash.js",
+    "compile": "tsc -p ./",
+    "test": "npm run compile && node scripts/run_tests.js --suite core",
+    "test:prove": "npm run compile && node scripts/run_tests.js --suite prove",
+    "test:e2e": "npm run compile && node scripts/run_tests.js --suite e2e",
+    "test:phase0a": "node dist/test/phase0a_runner.js",
+    "test:phase0b": "node dist/test/phase0b_runner.js",
+    "test:phase0": "npm run compile && npm run test:phase0a && npm run test:phase0b",
+    "test:phase1": "node dist/test/phase1_counterexamples.js",
+    "test:phase2": "node dist/test/phase2_counterexamples.js",
+    "test:phase3": "node dist/test/phase3_counterexamples.js",
+    "test:phase4": "node dist/test/phase4_counterexamples.js",
+    "test:review-fixes": "node dist/test/phase1_4_review_fixes_runner.js",
+    "test:review-10": "node dist/test/lens_review_10_issues_runner.js",
+    "test:phase5": "node dist/test/phase5_extension_host_runner.js",
+    "test:v02": "node dist/test/v02_doctor_staged_b08_runner.js",
+    "test:installed-vsix": "node dist/test/installed_vsix_real_vscode_runner.js",
+    "test:v04": "node dist/test/v04_wsl_devcontainer_vscode_server_runner.js",
+    "test:v05": "node dist/test/v05_ux_cockpit_journey_runner.js",
+    "test:redteam": "node dist/test/v06_redteam_hardening_runner.js",
+    "package:vsix": "npm run compile && node scripts/package_vsix.js --target all",
+    "package:vsix:win32": "npm run compile && node scripts/package_vsix.js --target win32-x64",
+    "package:vsix:linux": "npm run compile && node scripts/package_vsix.js --target linux-x64"
+  },
+  "devDependencies": {
+    "@types/node": "20.17.19",
+    "@types/vscode": "1.96.0",
+    "typescript": "5.7.3"
+  }
+}

@@ -1,0 +1,11 @@
+node_modules/
+dist/
+*.vsix
+.vscode-test/
+VERSION-LOCAL.json
+evidence/
+.local-governance/
+bundled/checkwash.pyz
+bundled/checkwash-broker.exe
+bundled/checkwash-broker-linux-x64
+bundled/manifest.json

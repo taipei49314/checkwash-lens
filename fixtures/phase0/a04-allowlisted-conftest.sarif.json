@@ -1,0 +1,137 @@
+{
+  "$schema": "https://json.schemastore.org/sarif-2.1.0.json",
+  "runs": [
+    {
+      "properties": {
+        "checkwash.base": "da00bac",
+        "checkwash.head": "9eb5d6b"
+      },
+      "results": [
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "tests/conftest.py"
+                },
+                "region": {
+                  "startLine": 14
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "test_discount_normal: assertion removed (strength EXACT_VALUE)"
+          },
+          "partialFingerprints": {
+            "checkwash/v2": "ASSERT_REMOVED/tests/test_calc.py/test_discount_normal/v2:b966dfc7f1c78163d66088a49454b14a159396ae53fad8c36e3d3e63b7a8ccb2"
+          },
+          "properties": {
+            "checkwash.evidenceSide": "base",
+            "checkwash.evidenceText": "assert compute_discount(200, 0) == 200"
+          },
+          "ruleId": "ASSERT_REMOVED"
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "tests/test_calc.py"
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "test_discount_normal: assertion removed (strength EXACT_VALUE)"
+          },
+          "partialFingerprints": {
+            "checkwash/v2": "ASSERT_REMOVED/tests/test_calc.py/test_discount_normal/v2:f453df16b661c1152f99fc8f701f9f323bf7c784e6c08d4e18f4e74a3ce77a3c"
+          },
+          "properties": {
+            "checkwash.evidenceSide": "base",
+            "checkwash.evidenceText": "assert compute_discount(50, 10) == 45"
+          },
+          "ruleId": "ASSERT_REMOVED"
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "tests/test_calc.py"
+                },
+                "region": {
+                  "startLine": 6
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "test_discount_normal: assertion strength EXACT_VALUE(90) -> TAUTOLOGY(10)"
+          },
+          "partialFingerprints": {
+            "checkwash/v2": "ASSERT_WEAKENED/tests/test_calc.py/test_discount_normal/v2:a334ce5e7d901d39ad6680cf7ad89376dc4dae5cc265db387056fcc37848a3f1"
+          },
+          "ruleId": "ASSERT_WEAKENED"
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "tests/test_calc.py"
+                },
+                "region": {
+                  "startLine": 8
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "test_discount_negative_raises: disabling marker added (pytest.mark.skip)"
+          },
+          "partialFingerprints": {
+            "checkwash/v2": "TEST_DISABLED/tests/test_calc.py/test_discount_negative_raises/v2:b0c81835c0d919ea655594fe74435f04a04d04f3136fa7611a1fb9a6980c290b"
+          },
+          "ruleId": "TEST_DISABLED"
+        }
+      ],
+      "tool": {
+        "driver": {
+          "informationUri": "https://github.com/taipei49314/checkwash",
+          "name": "checkwash",
+          "rules": [
+            {
+              "id": "ASSERT_REMOVED",
+              "name": "ASSERT_REMOVED",
+              "shortDescription": {
+                "text": "ASSERT_REMOVED"
+              }
+            },
+            {
+              "id": "ASSERT_WEAKENED",
+              "name": "ASSERT_WEAKENED",
+              "shortDescription": {
+                "text": "ASSERT_WEAKENED"
+              }
+            },
+            {
+              "id": "TEST_DISABLED",
+              "name": "TEST_DISABLED",
+              "shortDescription": {
+                "text": "TEST_DISABLED"
+              }
+            }
+          ],
+          "semanticVersion": "0.13.1"
+        }
+      }
+    }
+  ],
+  "version": "2.1.0"
+}

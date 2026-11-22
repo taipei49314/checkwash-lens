@@ -1,0 +1,153 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-and-test:
+    name: Build, Test & Package (${{ matrix.target }})
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 25
+    permissions:
+      contents: read
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: windows-latest
+            target: win32-x64
+            package_script: package:vsix:win32
+            expected_broker: extension/bundled/checkwash-broker.exe
+            forbidden_broker: extension/bundled/checkwash-broker-linux-x64
+          - os: ubuntu-latest
+            target: linux-x64
+            package_script: package:vsix:linux
+            expected_broker: extension/bundled/checkwash-broker-linux-x64
+            forbidden_broker: extension/bundled/checkwash-broker.exe
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Setup Node.js
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: "22"
+          cache: "npm"
+
+      - name: Setup Python 3.11
+        id: setup-python
+        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: "3.11"
+
+      - name: Verify no precompiled binaries are tracked in Git
+        shell: bash
+        run: |
+          tracked_bins="$(git ls-files '*.exe' '*.pyz' 'bundled/checkwash-broker-*' 'bundled/manifest.json')"
+          if [ -n "${tracked_bins}" ]; then
+            echo "ERROR: Precompiled binaries or generated manifest must not be tracked in Git:"
+            echo "${tracked_bins}"
+            exit 1
+          fi
+
+      - name: Install Node dependencies
+        run: npm ci
+
+      - name: Build native broker from C source & verify Checkwash zipapp SHA-256
+        run: npm run build:bundled
+
+      - name: Compile TypeScript
+        run: npm run compile
+
+      - name: Run cross-platform headless test suite
+        env:
+          CW_TEST_PYTHON_EXE: ${{ steps.setup-python.outputs.python-path }}
+        run: npm test
+
+      - name: Package platform VSIX & run zero-leak hygiene audit
+        run: npm run ${{ matrix.package_script }}
+
+      - name: Audit packaged VSIX contents
+        shell: bash
+        env:
+          TARGET_PLATFORM: ${{ matrix.target }}
+          EXPECTED_BROKER: ${{ matrix.expected_broker }}
+          FORBIDDEN_BROKER: ${{ matrix.forbidden_broker }}
+        run: |
+          node -e '
+            const assert = require("assert");
+            const fs = require("fs");
+            const path = require("path");
+            const pkg = JSON.parse(fs.readFileSync("package.json", "utf8"));
+            const vsixFile = `${pkg.name}-${pkg.version}-${process.env.TARGET_PLATFORM}.vsix`;
+            assert.ok(fs.existsSync(vsixFile), `Missing VSIX: ${vsixFile}`);
+            const buf = fs.readFileSync(vsixFile);
+            let eocd = -1;
+            for (let i = buf.length - 22; i >= Math.max(0, buf.length - 65557); i--) {
+              if (buf.readUInt32LE(i) === 0x06054b50) { eocd = i; break; }
+            }
+            assert.ok(eocd >= 0, "VSIX EOCD not found");
+            const count = buf.readUInt16LE(eocd + 10);
+            let cur = buf.readUInt32LE(eocd + 16);
+            const entries = [];
+            for (let i = 0; i < count; i++) {
+              const nameLen = buf.readUInt16LE(cur + 28);
+              const extraLen = buf.readUInt16LE(cur + 30);
+              const commentLen = buf.readUInt16LE(cur + 32);
+              entries.push(buf.subarray(cur + 46, cur + 46 + nameLen).toString("utf8"));
+              cur += 46 + nameLen + extraLen + commentLen;
+            }
+            for (const req of [
+              "extension/package.json",
+              "extension/README.md",
+              "extension/CHANGELOG.md",
+              "extension/LICENSE",
+              "extension/media/icon.png",
+              "extension/media/checkwash-activity.svg",
+              "extension/media/screenshots/cockpit-diff.png",
+              "extension/media/screenshots/precheck-scm.png",
+              "extension/dist/extension.js",
+              "extension/bundled/checkwash.pyz",
+              "extension/bundled/manifest.json",
+              process.env.EXPECTED_BROKER,
+            ]) {
+              assert.ok(entries.includes(req), `Missing required VSIX entry: ${req}`);
+            }
+            assert.strictEqual(entries.includes(process.env.FORBIDDEN_BROKER), false, "Other-platform broker leaked into VSIX");
+            assert.strictEqual(entries.includes("extension/bundled/upstream.json"), false, "upstream.json leaked into VSIX");
+            for (const e of entries) {
+              assert.strictEqual(
+                e.startsWith("extension/src/") ||
+                  e.startsWith("extension/dist/test/") ||
+                  e.startsWith("extension/fixtures/") ||
+                  e.startsWith("extension/native/") ||
+                  e.startsWith("extension/scripts/") ||
+                  /VERSION-LOCAL\.json/i.test(e),
+                false,
+                `Forbidden entry leaked into VSIX: ${e}`
+              );
+            }
+            console.log(`Verified ${vsixFile} (${buf.length} bytes, ${entries.length} entries).`);
+          '
+
+      - name: Upload VSIX artifact
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: checkwash-lens-${{ matrix.target }}
+          path: checkwash-lens-*-${{ matrix.target }}.vsix
+          if-no-files-found: error
+          retention-days: 7

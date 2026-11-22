@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json.schemastore.org/sarif-2.1.0.json",
+  "runs": [
+    {
+      "properties": {
+        "checkwash.base": "4666f10",
+        "checkwash.head": "da00bac"
+      },
+      "results": [],
+      "tool": {
+        "driver": {
+          "informationUri": "https://github.com/taipei49314/checkwash",
+          "name": "checkwash",
+          "rules": [],
+          "semanticVersion": "0.13.1"
+        }
+      },
+      "invocations": [
+        {
+          "executionSuccessful": true,
+          "toolExecutionNotifications": [
+            {
+              "descriptor": {
+                "id": "checkwash/unread-side"
+              },
+              "level": "warning",
+              "message": {
+                "text": "docs/huge.bin (head) exceeds limit"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "version": "2.1.0"
+}
